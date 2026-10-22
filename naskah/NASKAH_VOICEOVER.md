@@ -1,6 +1,6 @@
 # Naskah Voice-Over — *Atom Hidrogen*
 
-Durasi total **18:08** (1088.6 dtk) · 1984 kata · tempo baca ±5.3 suku kata/detik (±127 kata/menit saat berbicara).
+Durasi total **19:25** (1165.3 dtk) · 2121 kata · tempo baca ±5.3 suku kata/detik (±127 kata/menit saat berbicara).
 
 Cara memakai: baca setiap baris tepat pada timecode-nya. Tanda **[jeda x dtk]** adalah ruang hening agar animasi sempat "bernapas". 
 Kata **tebal** adalah kata kunci yang disorot di layar — beri sedikit penekanan. 
@@ -358,28 +358,50 @@ Bila ingin merekam per baris, beri nama file sesuai kode baris (mis. `hook-00.mp
 
 `16:44.3` `industry2-07` Dari satu proton dan satu elektron, lahir alat ukur yang **menjaga mutu** produk di berbagai sektor. *[6.5 dtk]* **[jeda 0.6 dtk]**
 
-## 16:53 — Bab 16 · Merangkai semuanya
+## 16:53 — Bab 16 · Jam atom maser hidrogen
 
 *(buka dengan hening 1.0 dtk)*
 
-`16:54.0` `recap-00` Mari kita rangkai seluruh perjalanannya. *[2.4 dtk]* **[jeda 0.6 dtk]**
+`16:54.0` `maser-00` Ada satu lagi penerapan atom hidrogen yang bekerja di atas kepala kita setiap hari. *[6.0 dtk]* **[jeda 0.6 dtk]**
 
-`16:57.0` `recap-01` Atom hidrogen adalah satu elektron yang terikat pada inti oleh **gaya Coulomb,** dengan massa tereduksi mu. *[7.4 dtk]* **[jeda 0.4 dtk]**
+`17:00.6` `maser-01` Ingat **struktur hiperhalus:** pada keadaan dasar satu s, spin elektron dan spin proton bisa searah atau berlawanan arah. *[8.1 dtk]* **[jeda 0.5 dtk]**
 
-`17:04.7` `recap-02` Fungsi gelombangnya terpisah menjadi bagian **radial** dan **harmonik sferis.** *[4.8 dtk]* **[jeda 0.4 dtk]**
+`17:09.2` `maser-02` Keadaan yang searah **sedikit lebih tinggi** energinya. *[3.6 dtk]* **[jeda 0.5 dtk]**
 
-`17:09.9` `recap-03` Syarat batas melahirkan **bilangan kuantum,** dengan energi minus tiga belas koma enam per n kuadrat elektronvolt. *[7.4 dtk]* **[jeda 0.4 dtk]**
+`17:13.2` `maser-03` Ketika spin elektron membalik, atom memancarkan gelombang mikro sekitar satu koma empat dua gigahertz, dengan panjang gelombang **dua puluh satu sentimeter.** *[10.2 dtk]* **[jeda 0.7 dtk]**
 
-`17:17.7` `recap-04` Simpul, distribusi radial, dan **bentuk orbital** menggambarkan di mana elektron mungkin berada. *[6.5 dtk]* **[jeda 0.4 dtk]**
+`17:24.2` `maser-04` Frekuensi ini sangat tajam dan stabil, sehingga dipakai sebagai detak jam atom: **maser hidrogen.** *[6.6 dtk]* **[jeda 0.6 dtk]**
 
-`17:24.6` `recap-05` Lompatan antartingkat memancarkan foton sesuai rumus Rydberg, dibatasi **aturan seleksi** delta l sama dengan plus atau minus satu. *[9.1 dtk]* **[jeda 0.4 dtk]**
+`17:31.3` `maser-05` Satelit navigasi **Galileo** milik Eropa membawa maser hidrogen pasif sebagai jam utamanya. *[6.4 dtk]* **[jeda 0.4 dtk]**
 
-`17:34.1` `recap-06` Dan garis-garis itu menjadi **penggaris cahaya** bagi laboratorium dan industri. *[5.0 dtk]* **[jeda 1.2 dtk]**
+`17:38.1` `maser-06` Menurut badan antariksa Eropa, jam ini hanya meleset sekitar **satu detik dalam tiga juta tahun.** *[6.8 dtk]* **[jeda 0.6 dtk]**
 
-`17:40.3` `recap-07` Jadi, lain kali kamu melihat cahaya merah muda dari tabung hidrogen, *[4.5 dtk]* **[jeda 0.3 dtk]**
+`17:45.5` `maser-07` Ketelitian itu penting, karena cahaya menempuh sekitar **tiga puluh sentimeter** dalam satu nanodetik, sehingga kesalahan waktu sekecil apa pun langsung menjadi kesalahan posisi. *[12.5 dtk]* **[jeda 0.6 dtk]**
 
-`17:45.1` `recap-08` ingatlah bahwa setiap warnanya adalah jejak satu elektron yang berpindah tangga di dalam **atom paling sederhana** di alam semesta. *[8.2 dtk]* **[jeda 0.8 dtk]**
+`17:58.6` `maser-08` Jadi, spin satu elektron di atom hidrogen ikut menentukan **ketepatan peta** di ponselmu. *[5.9 dtk]* **[jeda 0.6 dtk]**
 
-## 17:56 — Penutup
+## 18:06 — Bab 17 · Merangkai semuanya
 
-*(tanpa narasi · 12.0 dtk · musik saja)*
+*(buka dengan hening 1.0 dtk)*
+
+`18:07.7` `recap-00` Mari kita rangkai seluruh perjalanannya. *[2.4 dtk]* **[jeda 0.6 dtk]**
+
+`18:10.7` `recap-01` Atom hidrogen adalah satu elektron yang terikat pada inti oleh **gaya Coulomb,** dengan massa tereduksi mu. *[7.4 dtk]* **[jeda 0.4 dtk]**
+
+`18:18.4` `recap-02` Fungsi gelombangnya terpisah menjadi bagian **radial** dan **harmonik sferis.** *[4.8 dtk]* **[jeda 0.4 dtk]**
+
+`18:23.6` `recap-03` Syarat batas melahirkan **bilangan kuantum,** dengan energi minus tiga belas koma enam per n kuadrat elektronvolt. *[7.4 dtk]* **[jeda 0.4 dtk]**
+
+`18:31.4` `recap-04` Simpul, distribusi radial, dan **bentuk orbital** menggambarkan di mana elektron mungkin berada. *[6.5 dtk]* **[jeda 0.4 dtk]**
+
+`18:38.3` `recap-05` Lompatan antartingkat memancarkan foton sesuai rumus Rydberg, dibatasi **aturan seleksi** delta l sama dengan plus atau minus satu. *[9.1 dtk]* **[jeda 0.4 dtk]**
+
+`18:47.8` `recap-06` Dan garis-garis itu menjadi **penggaris cahaya** bagi laboratorium dan industri. *[5.0 dtk]* **[jeda 1.2 dtk]**
+
+`18:54.0` `recap-07` Jadi, lain kali kamu melihat cahaya merah muda dari tabung hidrogen, *[4.5 dtk]* **[jeda 0.3 dtk]**
+
+`18:58.8` `recap-08` ingatlah bahwa setiap warnanya adalah jejak satu elektron yang berpindah tangga di dalam **atom paling sederhana** di alam semesta. *[8.2 dtk]* **[jeda 0.8 dtk]**
+
+## 19:10 — Penutup
+
+*(tanpa narasi · 15.0 dtk · musik saja)*

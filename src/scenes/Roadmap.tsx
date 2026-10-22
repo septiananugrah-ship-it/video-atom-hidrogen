@@ -10,7 +10,7 @@ import {C, FONT} from '../theme';
 const CARDS = [
   {n: '1', title: 'Prinsip & teori dasar', sub: 'Coulomb → Schrödinger → orbital', color: C.cyan, x: 420},
   {n: '2', title: 'Implementasi dalam kimia', sub: 'ionisasi, deret spektrum, aturan seleksi', color: C.violet, x: 960},
-  {n: '3', title: 'Penerapan di industri', sub: 'lampu D₂, ICP-OES, plasma', color: C.amber, x: 1500},
+  {n: '3', title: 'Penerapan di industri', sub: 'lampu D₂, ICP-OES, jam maser', color: C.amber, x: 1500},
 ];
 const Y = 560;
 

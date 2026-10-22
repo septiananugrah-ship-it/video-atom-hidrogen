@@ -33,10 +33,10 @@ export const useScene = () => {
     const w = scene.tLines[i]?.words[k];
     return w ? w.start - scene.start : cue(i);
   };
-  /** Detik saat kata yang memuat `needle` pada baris i diucapkan. */
-  const wordOf = (i: number, needle: string) => {
+  /** Detik saat kata yang memuat `needle` pada baris i diucapkan (nth = kemunculan ke-n, mulai 0). */
+  const wordOf = (i: number, needle: string, nth = 0) => {
     const words = scene.tLines[i]?.words ?? [];
-    const w = words.find((x) => x.text.toLowerCase().includes(needle.toLowerCase()));
+    const w = words.filter((x) => x.text.toLowerCase().includes(needle.toLowerCase()))[nth];
     return w ? w.start - scene.start : cue(i);
   };
   return {t, fps, cue, cueEnd, word, wordOf, dur: scene.duration, scene};

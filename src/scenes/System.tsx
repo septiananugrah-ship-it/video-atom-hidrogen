@@ -1,7 +1,7 @@
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
-import {BACK, EASE_IN_OUT, mix, ramp, win} from '../anim';
-import {Arrow, Card, DrawPath, Glow, Label, Stage, V} from '../components/primitives';
+import {BACK, EASE_IN, EASE_IN_OUT, mix, rand, ramp, win} from '../anim';
+import {Arrow, DrawPath, Formula, Frac, Glow, Label, Stage, Sub, Sup, V} from '../components/primitives';
 import {Electron, Nucleus, plotPath} from '../components/viz';
 import {useScene} from '../SceneContext';
 import {C, FONT} from '../theme';
@@ -24,7 +24,6 @@ export const System: React.FC = () => {
   const ex = 560 + dist * 90;
   // Fase B: massa & pusat massa (baris 3–5)
   const B = win(t, cue(3) - 0.3, cue(6) - 0.4, 0.8, 0.7);
-  const scale = ramp(t, cue(3), cue(3) + 1.2, BACK);
   const orbit = ramp(t, cue(5) - 0.2, cue(5) + 0.8);
   const ang = (t - cue(4)) * 1.6;
   const R = 300;
@@ -94,16 +93,55 @@ export const System: React.FC = () => {
         </g>
         {/* ===== Fase B ===== */}
         <g opacity={B}>
-          {/* timbangan massa */}
-          <g opacity={1 - orbit}>
-            <rect x={420} y={340} width={1080 * scale} height={60} rx={12} fill={C.red} opacity={0.8} />
-            <rect x={420} y={460} width={Math.max(4, (1080 / 1836) * scale)} height={60} rx={2} fill={C.cyan} />
-            <Label x={420} y={310} size={28} color={C.red} anchor="start" weight={600}>
-              massa proton ≈ 1836 × massa elektron
-            </Label>
-            <Label x={440} y={490} size={28} color={C.cyan} anchor="start" weight={600}>
-              ← massa elektron
-            </Label>
+          {/* timbangan: 1 proton vs 1836 elektron */}
+          <g opacity={1 - ramp(t, cue(4) - 0.4, cue(4) + 0.2)}>
+            {(() => {
+              const fill = ramp(t, cue(3) + 0.4, cue(3) + 3.2, EASE_IN_OUT);
+              const count = Math.round(1836 * fill);
+              const tilt = 14 * (1 - fill); // derajat; kiri (proton) turun dulu
+              const px0 = 960;
+              const py0 = 560;
+              const L = 420;
+              const rad = (tilt * Math.PI) / 180;
+              const lx = px0 - L * Math.cos(rad);
+              const ly = py0 + L * Math.sin(rad);
+              const rx = px0 + L * Math.cos(rad);
+              const ry = py0 - L * Math.sin(rad);
+              return (
+                <g>
+                  <path d={`M${px0 - 50},${py0 + 190} L${px0},${py0} L${px0 + 50},${py0 + 190} Z`} fill="#2a3352" stroke={C.muted} strokeWidth={2} />
+                  <line x1={lx} y1={ly} x2={rx} y2={ry} stroke="#c8d3ef" strokeWidth={8} strokeLinecap="round" />
+                  <circle cx={px0} cy={py0} r={10} fill={C.gold} />
+                  {/* piring kiri: proton */}
+                  <line x1={lx} y1={ly} x2={lx} y2={ly + 90} stroke={C.muted} strokeWidth={2} />
+                  <path d={`M${lx - 110},${ly + 90} Q${lx},${ly + 140} ${lx + 110},${ly + 90} Z`} fill="#1b2340" stroke={C.muted} strokeWidth={2} />
+                  <Nucleus x={lx} y={ly + 70} r={30} label="p⁺" />
+                  {/* piring kanan: elektron yang tertuang */}
+                  <line x1={rx} y1={ry} x2={rx} y2={ry + 90} stroke={C.muted} strokeWidth={2} />
+                  <path d={`M${rx - 110},${ry + 90} Q${rx},${ry + 140} ${rx + 110},${ry + 90} Z`} fill="#1b2340" stroke={C.muted} strokeWidth={2} />
+                  {Array.from({length: 160}, (_, k) => {
+                    const shown = k < 160 * fill;
+                    if (!shown) return null;
+                    const ang = rand(k * 3.1) * Math.PI;
+                    const rr = 70 * Math.sqrt(rand(k * 7.3));
+                    return <circle key={k} cx={rx + rr * Math.cos(ang) * 1.3} cy={ry + 88 - rr * Math.sin(ang) * 0.55} r={4} fill={C.cyan} opacity={0.85} />;
+                  })}
+                  {/* aliran elektron dari atas */}
+                  {fill > 0 && fill < 1
+                    ? Array.from({length: 10}, (_, k) => {
+                        const ph = (t * 1.8 + k / 10) % 1;
+                        return <circle key={k} cx={rx + (rand(k) - 0.5) * 30} cy={mix(ry - 260, ry + 70, ramp(ph, 0, 1, EASE_IN))} r={4} fill={C.cyan} opacity={0.8} />;
+                      })
+                    : null}
+                  <Label x={rx} y={ry - 290} size={34} color={C.cyan} weight={700} font="mono">
+                    {count.toLocaleString('id-ID')} elektron
+                  </Label>
+                  <Label x={lx} y={ly - 60} size={34} color={C.red} weight={700}>
+                    1 proton
+                  </Label>
+                </g>
+              );
+            })()}
           </g>
           <g opacity={ramp(t, cue(4), cue(4) + 0.8)}>
             <circle cx={cm.x} cy={cm.y} r={R} fill="none" stroke={C.cyan} strokeOpacity={0.3 * orbit} strokeWidth={2} strokeDasharray="8 10" />
@@ -124,7 +162,7 @@ export const System: React.FC = () => {
         </g>
         {/* ===== Fase C ===== */}
         <g opacity={Cph}>
-          <line x1={960} y1={230} x2={960} y2={mix(230, 700, split)} stroke={C.faint} strokeWidth={2} />
+          <line x1={960} y1={230} x2={960} y2={mix(230, 600, split)} stroke={C.faint} strokeWidth={2} />
           <Label x={520} y={240} size={28} color={C.muted} weight={600} spacing={3}>
             GERAK SELURUH ATOM
           </Label>
@@ -132,18 +170,18 @@ export const System: React.FC = () => {
             GERAK RELATIF
           </Label>
           <g opacity={split}>
-            <g transform={`translate(${(drift % 360) - 180} 0)`}>
-              <circle cx={520} cy={460} r={90} fill="url(#soft-cyan)" opacity={0.5} />
-              <Nucleus x={520} y={460} r={18} />
+            <g transform={`translate(${(drift % 300) - 150} 0)`}>
+              <circle cx={520} cy={420} r={80} fill="url(#soft-cyan)" opacity={0.5} />
+              <Nucleus x={520} y={420} r={18} />
             </g>
-            <Arrow x1={380} y1={600} x2={680} y2={600} color="muted" width={4} />
-            <Label x={520} y={640} size={24} color={C.muted}>
+            <Arrow x1={370} y1={530} x2={670} y2={530} color="muted" width={4} />
+            <Label x={520} y={575} size={26} color={C.muted}>
               translasi bebas, tidak terkuantisasi oleh atom
             </Label>
-            <Nucleus x={1300} y={530} r={22} />
-            <Electron x={1300 + 220 * Math.cos(t * 0.9)} y={530 + 120 * Math.sin(t * 0.9)} r={12} />
-            <Arrow x1={1300} y1={530} x2={1300 + 200 * Math.cos(t * 0.9)} y2={530 + 109 * Math.sin(t * 0.9)} color="violet" width={4} />
-            <Label x={1300 + 110 * Math.cos(t * 0.9)} y={500 + 60 * Math.sin(t * 0.9)} size={32} color={C.violet} font="serif" italic>
+            <Nucleus x={1300} y={420} r={22} />
+            <Electron x={1300 + 220 * Math.cos(t * 0.9)} y={420 + 120 * Math.sin(t * 0.9)} r={12} />
+            <Arrow x1={1300} y1={420} x2={1300 + 200 * Math.cos(t * 0.9)} y2={420 + 109 * Math.sin(t * 0.9)} color="violet" width={4} />
+            <Label x={1300 + 110 * Math.cos(t * 0.9)} y={390 + 60 * Math.sin(t * 0.9)} size={32} color={C.violet} font="serif" italic>
               r
             </Label>
           </g>
@@ -172,32 +210,15 @@ export const System: React.FC = () => {
         </g>
       </Stage>
 
-      <Card x={1400} y={760} opacity={A * ramp(t, cue(2) + 0.6, cue(2) + 1.4, BACK)} accent={C.red}>
-        <div style={{fontSize: 46}}>
-          <V>V</V>(<V>r</V>) = − <V>Ze</V>
-          <sup style={{fontSize: 26}}>2</sup> / (4π<V>ε</V>
-          <sub style={{fontSize: 24}}>0</sub>
-          <V>r</V>)
-        </div>
-      </Card>
-      <Card x={960} y={720} opacity={Cph * mu} scale={0.85 + 0.15 * mu} accent={C.violet}>
-        <div style={{fontSize: 50, textAlign: 'center'}}>
-          <V color={C.violet}>μ</V> = <V>m</V>
-          <sub style={{fontSize: 26}}>e</sub>
-          <V>m</V>
-          <sub style={{fontSize: 26}}>N</sub> / (<V>m</V>
-          <sub style={{fontSize: 26}}>e</sub> + <V>m</V>
-          <sub style={{fontSize: 26}}>N</sub>)
-        </div>
-        <div style={{fontSize: 24, color: C.muted, textAlign: 'center'}}>massa tereduksi</div>
-      </Card>
-      <Card x={1740} y={330} opacity={Cph * ratio} accent={C.gold} anchor="right" style={{fontSize: 34}}>
-        <div>
-          hidrogen: <V color={C.violet}>μ</V> / <V>m</V>
-          <sub style={{fontSize: 20}}>e</sub> ≈ <b style={{color: C.gold}}>0,999456</b>
-        </div>
-        <div style={{fontSize: 22, color: C.muted}}>≈ 0,05% lebih kecil → terlihat di spektrum</div>
-      </Card>
+      <Formula x={560} y={730} p={A * ramp(t, cue(2) + 0.6, cue(2) + 1.4)} accent={C.red} caption="energi potensial Coulomb">
+        <V>V</V>(<V>r</V>) = −<Frac n={<><V>Z</V><V>e</V><Sup>2</Sup></>} d={<>4π<V>ε</V><Sub>0</Sub><V>r</V></>} />
+      </Formula>
+      <Formula x={960} y={760} p={Cph * mu * (1 - ratio)} accent={C.violet} caption="massa tereduksi">
+        <V color={C.violet}>μ</V>&nbsp;=&nbsp;<Frac n={<><V>m</V><Sub>e</Sub><V>m</V><Sub>N</Sub></>} d={<><V>m</V><Sub>e</Sub> + <V>m</V><Sub>N</Sub></>} />
+      </Formula>
+      <Formula x={960} y={760} p={Cph * ratio} accent={C.gold} caption="hidrogen: ≈ 0,05 % lebih kecil — muncul lagi di spektrum (Bab 12)">
+        <Frac n={<V color={C.violet}>μ</V>} d={<><V>m</V><Sub>e</Sub></>} />&nbsp;=&nbsp;<Frac n="1" d={<>1 + <Frac n={<><V>m</V><Sub>e</Sub></>} d={<><V>m</V><Sub>p</Sub></>} size={0.8} /></>} />&nbsp;≈&nbsp;<b style={{color: C.gold, fontFamily: 'Outfit, sans-serif'}}>0,999456</b>
+      </Formula>
       <div
         style={{
           position: 'absolute',

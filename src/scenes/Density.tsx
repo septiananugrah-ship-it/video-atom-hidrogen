@@ -1,14 +1,14 @@
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
 import {BACK, EASE_IN_OUT, ramp} from '../anim';
-import {Card, DrawPath, Glow, Label, Stage, V} from '../components/primitives';
+import {Card, DrawPath, Formula, Frac, Glow, Label, Stage, Sub, Sup, V} from '../components/primitives';
 import {Nucleus, plotPath} from '../components/viz';
 import {useScene} from '../SceneContext';
 import {C} from '../theme';
 
 // Kiri: atom 1s sebagai "bawang". Kanan: plot (s = r/a dari 0 sampai 5).
 const AT = {x: 470, y: 530, px: 80}; // 80 px per a
-const BOX = {x: 960, y: 760, w: 760, sy: 430};
+const BOX = {x: 960, y: 770, w: 760, sy: 400};
 const S_MAX = 5;
 const X = (s: number) => BOX.x + (s / S_MAX) * BOX.w;
 const dens = (s: number) => Math.exp(-2 * s); // |ψ|² dinormalisasi ke 1 di inti
@@ -96,7 +96,7 @@ export const Density: React.FC = () => {
         </Label>
         <DrawPath d={plotPath(P, 0, S_MAX, BOX)} p={pr} stroke={C.mint} width={6} glow len={2000} />
         <Label x={X(2.1)} y={BOX.y - 0.78 * BOX.sy} size={30} color={C.mint} anchor="start" weight={700} opacity={pr}>
-          P(r) = r²R²
+          P(r)
         </Label>
         <g opacity={peak}>
           <line x1={X(1)} y1={BOX.y} x2={X(1)} y2={BOX.y - BOX.sy} stroke={C.mint} strokeWidth={2} strokeDasharray="6 6" />
@@ -115,7 +115,29 @@ export const Density: React.FC = () => {
           32%
         </Label>
       </Stage>
-      <Card x={1340} y={210} opacity={both} accent={C.gold} style={{fontSize: 28}}>
+      <Formula x={1370} y={195} p={d * (1 - pr)} accent={C.cyan} caption="kerapatan peluang per volume">
+        |<V>ψ</V>
+        <Sub>1s</Sub>|<Sup>2</Sup>&nbsp;=&nbsp;<Frac n="1" d={<>π<V>a</V><Sup>3</Sup></>} />
+        <V>e</V>
+        <Sup>
+          −<Frac n={<>2<V>r</V></>} d={<V>a</V>} size={0.9} />
+        </Sup>
+      </Formula>
+      <Formula x={1370} y={195} p={pr * (1 - mean)} accent={C.mint} caption="peluang per jarak: kerapatan × luas kulit">
+        <V color={C.mint}>P</V>(<V>r</V>)&nbsp;=&nbsp;<V>r</V>
+        <Sup>2</Sup>
+        <V>R</V>
+        <Sup>2</Sup>&nbsp;=&nbsp;<Frac n={<>4<V>r</V><Sup>2</Sup></>} d={<><V>a</V><Sup>3</Sup></>} />
+        <V>e</V>
+        <Sup>
+          −<Frac n={<>2<V>r</V></>} d={<V>a</V>} size={0.9} />
+        </Sup>
+      </Formula>
+      <Formula x={1370} y={195} p={mean * (1 - both)} accent={C.mint} caption="⟨r⟩ = 1,5a">
+        <V>P</V>(<V>r</V> &lt; <V>a</V>)&nbsp;=&nbsp;1 − 5<V>e</V>
+        <Sup>−2</Sup>&nbsp;≈&nbsp;<b style={{color: C.mint, fontFamily: 'Outfit, sans-serif'}}>0,323</b>
+      </Formula>
+      <Card x={1370} y={195} opacity={both} accent={C.gold} style={{fontSize: 32}}>
         <div>
           <span style={{color: C.cyan}}>|ψ|²</span>: peluang per volume → puncak di inti
         </div>
@@ -125,10 +147,6 @@ export const Density: React.FC = () => {
           </span>
           : peluang per jarak → puncak di <V>r</V> = <V>a</V>
         </div>
-      </Card>
-      <Card x={1340} y={210} opacity={(1 - both) * ramp(t, cue(8) + 0.2, cue(8) + 1, BACK)} accent={C.mint} style={{fontSize: 30}}>
-        <V>P</V>(<V>r</V> &lt; <V>a</V>) = 1 − 5<V>e</V>
-        <sup>−2</sup> ≈ 0,323
       </Card>
     </AbsoluteFill>
   );

@@ -26,8 +26,8 @@ const specPath = (shift = 0, w = 1.2) => {
 
 export const Industry: React.FC = () => {
   const {t, cue, wordOf} = useScene();
-  const inst = ramp(t, cue(1) - 0.3, cue(1) + 1);
-  const lamp = ramp(t, wordOf(1, 'deuterium'), wordOf(1, 'deuterium') + 0.6);
+  const inst = ramp(t, 0.1, 1.3);
+  const lamp = Math.max(0.35 * ramp(t, 0.4, 1.2), ramp(t, wordOf(1, 'deuterium'), wordOf(1, 'deuterium') + 0.6));
   const beam = ramp(t, wordOf(1, 'sumber') , wordOf(1, 'sumber') + 1.5, EASE_IN_OUT);
   const axes = ramp(t, cue(2) - 0.3, cue(2) + 0.6);
   const contP = ramp(t, cue(2), cue(2) + 1.8, EASE_IN_OUT);

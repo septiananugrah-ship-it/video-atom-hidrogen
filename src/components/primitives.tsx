@@ -414,3 +414,67 @@ export const DrawPath: React.FC<{
     />
   );
 };
+
+/* ------------------------------------------------------------------ */
+/* Tipografi rumus (HTML): pecahan bertumpuk, subskrip & superskrip.     */
+/* ------------------------------------------------------------------ */
+
+/** Pecahan bertumpuk — jangan pakai garis miring untuk pecahan di rumus. */
+export const Frac: React.FC<{n: React.ReactNode; d: React.ReactNode; size?: number}> = ({n, d, size = 0.84}) => (
+  <span
+    style={{
+      display: 'inline-flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      verticalAlign: 'middle',
+      margin: '0 0.14em',
+      fontSize: `${size}em`,
+      lineHeight: 1.12,
+      position: 'relative',
+      top: '-0.08em',
+    }}
+  >
+    <span style={{padding: '0 0.2em 0.08em', whiteSpace: 'nowrap'}}>{n}</span>
+    <span style={{alignSelf: 'stretch', height: 3, borderRadius: 2, background: 'currentColor', opacity: 0.85}} />
+    <span style={{padding: '0.08em 0.2em 0', whiteSpace: 'nowrap'}}>{d}</span>
+  </span>
+);
+
+export const Sub: React.FC<{children: React.ReactNode; color?: string}> = ({children, color}) => (
+  <sub style={{fontSize: '0.62em', verticalAlign: '-0.32em', lineHeight: 0, color, fontStyle: 'normal'}}>{children}</sub>
+);
+
+export const Sup: React.FC<{children: React.ReactNode; color?: string}> = ({children, color}) => (
+  <sup style={{fontSize: '0.62em', verticalAlign: '0.55em', lineHeight: 0, color}}>{children}</sup>
+);
+
+/** Bagian rumus yang muncul bertahap (p: 0..1) mengikuti narasi. */
+export const Part: React.FC<{p: number; children: React.ReactNode; color?: string}> = ({p, children, color}) => (
+  <span style={{opacity: p, color, filter: p < 0.99 ? `blur(${(1 - p) * 3}px)` : undefined}}>{children}</span>
+);
+
+/** Kartu rumus utama: ≥ 56 px, satu per momen. */
+export const Formula: React.FC<{
+  x: number;
+  y: number;
+  p: number;
+  children: React.ReactNode;
+  accent?: string;
+  size?: number;
+  anchor?: 'center' | 'left' | 'right';
+  caption?: React.ReactNode;
+}> = ({x, y, p, children, accent = C.gold, size = 58, anchor = 'center', caption}) =>
+  p <= 0.001 ? null : (
+    <Card x={x} y={y} opacity={Math.min(1, p * 1.4)} scale={0.9 + 0.1 * p} accent={accent} anchor={anchor} style={{padding: '22px 38px'}}>
+      <div style={{fontSize: size, lineHeight: 1.25, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 0, fontFamily: FONT.serif}}>{children}</div>
+      {caption ? <div style={{fontSize: 26, color: C.muted, textAlign: 'center', marginTop: 10, fontFamily: FONT.sans}}>{caption}</div> : null}
+    </Card>
+  );
+
+/** ν̃ (bilangan gelombang) — tilde digambar sendiri karena tanda gabungan tidak menempel di font serif. */
+export const NuTilde: React.FC<{color?: string}> = ({color}) => (
+  <span style={{position: 'relative', display: 'inline-block', fontFamily: FONT.serif, fontStyle: 'italic', color}}>
+    ν
+    <span style={{position: 'absolute', left: '0.12em', top: '-0.48em', fontSize: '0.85em', fontStyle: 'normal'}}>~</span>
+  </span>
+);

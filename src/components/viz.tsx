@@ -145,6 +145,17 @@ export const orbitalPoints = (id: OrbitalId, count = 1400, slab = 0): Pt[] => {
   return pts;
 };
 
+/** Kotak sampel (dalam satuan a) untuk tiap orbital — dipakai agar ukuran antarorbital berskala sama. */
+export const orbitalBox = (id: OrbitalId) => PSI[id].L;
+
+/** Proyeksi satu titik sampel ke layar (sama dengan OrbitalCloud). */
+export const projectPoint = (q: {x: number; y: number; z: number}, x: number, y: number, size: number, yaw: number, pitch: number): [number, number] => {
+  const x1 = q.x * Math.cos(yaw) - q.y * Math.sin(yaw);
+  const d1 = q.x * Math.sin(yaw) + q.y * Math.cos(yaw);
+  const z2 = q.z * Math.cos(pitch) - d1 * Math.sin(pitch);
+  return [x + x1 * size, y - z2 * size];
+};
+
 /**
  * Awan orbital diproyeksikan dari 3D. Titik berwarna menurut tanda fase (emas +, biru −).
  * yaw/pitch dalam radian; size = jari-jari kotak sampel dalam piksel.

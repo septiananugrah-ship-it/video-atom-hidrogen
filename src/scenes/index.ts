@@ -6,6 +6,7 @@ import {Industry} from './Industry';
 import {Industry2} from './Industry2';
 import {Ionization} from './Ionization';
 import {Limits} from './Limits';
+import {Maser} from './Maser';
 import {Numbers} from './Numbers';
 import {Orbitals} from './Orbitals';
 import {Outro} from './Outro';
@@ -40,6 +41,7 @@ export const SCENES: Record<string, React.FC> = {
   limits: Limits,
   industry: Industry,
   industry2: Industry2,
+  maser: Maser,
   recap: Recap,
   outro: Outro,
 };

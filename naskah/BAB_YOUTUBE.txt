@@ -23,5 +23,6 @@ BAGIAN 2 · Implementasi dalam kimia
 BAGIAN 3 · Penerapan di industri
 14:48 Bab 14 · Lampu deuterium & kalibrasi
 15:47 Bab 15 · Spektroskopi emisi atom
+16:53 Bab 16 · Jam atom maser hidrogen
 
-16:53 Bab 16 · Merangkai semuanya
+18:06 Bab 17 · Merangkai semuanya

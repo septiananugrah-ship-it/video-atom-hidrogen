@@ -1,7 +1,7 @@
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
 import {BACK, EASE_IN_OUT, mix, ramp} from '../anim';
-import {Card, DrawPath, Glow, Label, Stage, V} from '../components/primitives';
+import {DrawPath, Formula, Frac, Glow, Label, Part, Stage, Sub, Sup, V} from '../components/primitives';
 import {Rnl, plotPath} from '../components/viz';
 import {useScene} from '../SceneContext';
 import {C} from '../theme';
@@ -16,7 +16,7 @@ const COL = [C.red, C.cyan, C.violet];
 
 export const Veff: React.FC = () => {
   const {t, cue, wordOf} = useScene();
-  const axes = ramp(t, cue(0) - 0.4, cue(0) + 0.8);
+  const axes = ramp(t, 0.1, 1.2);
   const coul = ramp(t, cue(1), cue(1) + 1.4, EASE_IN_OUT);
   const cent = ramp(t, wordOf(2, 'sentrifugal'), wordOf(2, 'sentrifugal') + 1.2, EASE_IN_OUT);
   const sum1 = ramp(t, cue(2) + 2.4, cue(2) + 3.6, EASE_IN_OUT);
@@ -71,7 +71,7 @@ export const Veff: React.FC = () => {
             );
           })}
           <Label x={X(1.2)} y={Y(0.45)} size={24} color={C.gold} anchor="start" opacity={cent * (1 - sum1)}>
-            + ℓ(ℓ+1)/r² (positif)
+            ∝ ℓ(ℓ+1)/r² (positif)
           </Label>
           {/* bola-bola */}
           <g opacity={s0 * (1 - l12)}>
@@ -122,28 +122,25 @@ export const Veff: React.FC = () => {
           <rect x={420} y={420} width={170} height={360} fill={C.red} opacity={0.08} />
         </g>
       </Stage>
-      <Card x={1700} y={330} opacity={mainFade * ramp(t, cue(0) + 0.3, cue(0) + 1.1, BACK)} accent={C.gold} anchor="right">
-        <div style={{fontSize: 34}}>
-          <V>V</V>
-          <sub style={{fontSize: 20}}>eff</sub> = <span style={{color: C.red}}>−<V>Ze</V>²/4π<V>ε</V>₀<V>r</V></span>
-        </div>
-        <div style={{fontSize: 34, opacity: cent}}>
-          <span style={{marginLeft: 70, color: C.gold}}>
-            + <V>ħ</V>²<V>ℓ</V>(<V>ℓ</V>+1)/2<V>μr</V>²
-          </span>
-        </div>
-      </Card>
-      <Card x={1700} y={560} opacity={mainFade * kin} accent={C.violet} anchor="right" style={{fontSize: 28}}>
-        <div>bukan gaya baru:</div>
-        <div style={{color: C.violet}}>energi kinetik gerak sudut</div>
-        <div style={{fontSize: 24, color: C.muted}}>
-          <V>L</V>² / 2<V>μr</V>², dengan <V>L</V>² = <V>ℓ</V>(<V>ℓ</V>+1)<V>ħ</V>²
-        </div>
-      </Card>
-      <Card x={1700} y={250} opacity={pen} accent={C.red} anchor="right" style={{fontSize: 30}}>
-        dekat inti: <V>R</V>(<V>r</V>) ∝ <V>r</V>
-        <sup>ℓ</sup>
-      </Card>
+      <Formula x={1250} y={200} p={mainFade * ramp(t, cue(0) + 0.3, cue(0) + 1.1) * (1 - kin)} accent={C.gold}>
+        <V>V</V>
+        <Sub>eff</Sub>(<V>r</V>)&nbsp;=&nbsp;
+        <Part p={coul} color={C.red}>
+          −<Frac n={<><V>Z</V><V>e</V><Sup>2</Sup></>} d={<>4π<V>ε</V><Sub>0</Sub><V>r</V></>} />
+        </Part>
+        &nbsp;
+        <Part p={cent} color={C.gold}>
+          +&nbsp;<Frac n={<><V>ħ</V><Sup>2</Sup><V>ℓ</V>(<V>ℓ</V> + 1)</>} d={<>2<V>μ</V><V>r</V><Sup>2</Sup></>} />
+        </Part>
+      </Formula>
+      <Formula x={1250} y={200} p={mainFade * kin} accent={C.violet} caption={<>dengan <i>L</i>² = <i>ℓ</i>(<i>ℓ</i> + 1)<i>ħ</i>² — energi kinetik gerak sudut, bukan gaya baru</>}>
+        <V>E</V>
+        <Sub>sudut</Sub>&nbsp;=&nbsp;<Frac n={<><V>L</V><Sup>2</Sup></>} d={<>2<V>μ</V><V>r</V><Sup>2</Sup></>} />
+      </Formula>
+      <Formula x={1250} y={200} p={pen} accent={C.red} caption={<>dekat inti, faktor <i>r</i><sup>ℓ</sup> menekan orbital p dan d</>}>
+        <V>R</V>(<V>r</V>)&nbsp;∝&nbsp;<V>r</V>
+        <Sup>ℓ</Sup>
+      </Formula>
     </AbsoluteFill>
   );
 };

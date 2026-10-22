@@ -1,13 +1,13 @@
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
 import {BACK, EASE_IN_OUT, mix, ramp, win} from '../anim';
-import {Card, DrawPath, Glow, Label, Stage, V} from '../components/primitives';
+import {DrawPath, Formula, Frac, Glow, Label, Stage, Sub, Sup, V} from '../components/primitives';
 import {En, plotPath} from '../components/viz';
 import {useScene} from '../SceneContext';
 import {C, FONT} from '../theme';
 
 // Diagram tingkat energi (skala linear eV).
-const D = {x0: 180, x1: 820, top: 230, bottom: 820};
+const D = {x0: 250, x1: 860, top: 230, bottom: 820};
 const eY = (e: number) => mix(D.bottom, D.top, (e + 14.2) / 15.2);
 const LV = [1, 2, 3, 4, 5, 6, 7, 8];
 const COLS = [C.gold, C.cyan, C.violet, C.mint, C.pink, C.blue, C.amber, C.muted];
@@ -20,12 +20,13 @@ export const Quant: React.FC = () => {
   const series = ramp(t, cue(1), cue(1) + 0.8, BACK);
   const blow = ramp(t, cue(2), cue(2) + 2, EASE_IN_OUT);
   const stop = ramp(t, cue(3), cue(3) + 1.6, EASE_IN_OUT);
-  const nCard = ramp(t, cue(4), cue(4) + 0.8, BACK);
+  const nCard = ramp(t, cue(4), cue(4) + 0.8);
+  const rec = ramp(t, cue(2), cue(2) + 0.8);
   const nums = [wordOf(4, 'satu'), wordOf(4, 'dua'), wordOf(4, 'tiga')].map((w) => ramp(t, w, w + 0.4, BACK));
   // Fase B: diagram energi (baris 5–9)
   const B = ramp(t, cue(5) - 0.4, cue(5) + 0.6);
   const formula = ramp(t, cue(5), cue(5) + 0.8, BACK);
-  const lvTimes = [wordOf(6, 'satu'), wordOf(6, 'dua'), wordOf(6, 'tiga')];
+  const lvTimes = [wordOf(6, 'satu'), wordOf(6, 'dua'), wordOf(6, 'tiga', 2)];
   const cont = ramp(t, wordOf(7, 'ionisasi') - 0.3, wordOf(7, 'ionisasi') + 0.8);
   const bohr = ramp(t, cue(8), cue(8) + 0.8, BACK) * (1 - ramp(t, cue(9) - 0.3, cue(9) + 0.3));
   const cross = ramp(t, wordOf(8, 'bukan'), wordOf(8, 'bukan') + 0.5);
@@ -138,41 +139,45 @@ export const Quant: React.FC = () => {
           </g>
         </g>
       </Stage>
-      <Card x={1460} y={300} opacity={A * series} scale={0.85 + 0.15 * series} accent={C.violet}>
-        <div style={{fontSize: 34}}>
-          <V>u</V>(<V>ρ</V>) = <V>ρ</V>
-          <sup>ℓ+1</sup> <V>e</V>
-          <sup>−ρ/2</sup> Σ <V>c</V>
-          <sub>j</sub>
-          <V>ρ</V>
-          <sup>j</sup>
-        </div>
-        <div style={{fontSize: 26, color: C.muted, marginTop: 8}}>
-          <V>c</V>
-          <sub>j+1</sub> = <V>c</V>
-          <sub>j</sub> · (<V>j</V> + <V>ℓ</V> + 1 − <V>η</V>) / [(<V>j</V>+1)(<V>j</V>+2<V>ℓ</V>+2)]
-        </div>
-      </Card>
-      <Card x={1460} y={520} opacity={A * nCard} scale={0.85 + 0.15 * nCard} accent={C.gold}>
-        <div style={{fontSize: 38}}>
-          <V>η</V> = <V color={C.gold}>n</V> = <V>n</V>
-          <sub>r</sub> + <V>ℓ</V> + 1
-        </div>
-        <div style={{display: 'flex', gap: 22, justifyContent: 'center', marginTop: 8}}>
-          {['1', '2', '3', '…'].map((x, i) => (
-            <span key={x} style={{fontFamily: FONT.mono, fontSize: 40, color: C.gold, opacity: i < 3 ? nums[i] : nums[2], scale: String(0.6 + 0.4 * (i < 3 ? nums[i] : nums[2]))}}>
-              {x}
-            </span>
-          ))}
-        </div>
-      </Card>
-      <Card x={1460} y={300} opacity={B * formula} scale={0.85 + 0.15 * formula} accent={C.gold}>
-        <div style={{fontSize: 50}}>
-          <V color={C.gold}>E</V>
-          <sub style={{fontSize: 28}}>n</sub> = −13,6 eV · <V>Z</V>² / <V>n</V>²
-        </div>
-        <div style={{fontSize: 24, color: C.muted, textAlign: 'center'}}>energi hanya bergantung pada n (model Coulomb dasar)</div>
-      </Card>
+      <Formula x={1480} y={290} p={A * series * (1 - rec)} accent={C.violet} caption="solusi radial sebagai deret pangkat">
+        <V>u</V>(<V>ρ</V>)&nbsp;=&nbsp;<V>ρ</V>
+        <Sup>ℓ+1</Sup>
+        <V>e</V>
+        <Sup>
+          −<Frac n={<V>ρ</V>} d="2" size={0.9} />
+        </Sup>
+        &nbsp;Σ&nbsp;<V>c</V>
+        <Sub>j</Sub>
+        <V>ρ</V>
+        <Sup>j</Sup>
+      </Formula>
+      <Formula x={1480} y={290} p={A * rec * (1 - nCard)} accent={C.violet} caption="deret berhenti hanya bila pembilangnya nol">
+        <Frac n={<><V>c</V><Sub>j+1</Sub></>} d={<><V>c</V><Sub>j</Sub></>} />
+        &nbsp;=&nbsp;
+        <Frac n={<><V>j</V> + <V>ℓ</V> + 1 − <V color={C.gold}>η</V></>} d={<>(<V>j</V> + 1)(<V>j</V> + 2<V>ℓ</V> + 2)</>} />
+      </Formula>
+      <Formula
+        x={1480}
+        y={290}
+        p={A * nCard}
+        accent={C.gold}
+        caption={
+          <span style={{display: 'inline-flex', gap: 26, fontFamily: FONT.mono, fontSize: 40, color: C.gold}}>
+            {['1', '2', '3', '…'].map((x, i) => (
+              <span key={x} style={{opacity: nums[Math.min(i, 2)], scale: String(0.6 + 0.4 * nums[Math.min(i, 2)])}}>
+                {x}
+              </span>
+            ))}
+          </span>
+        }
+      >
+        <V color={C.gold}>η</V>&nbsp;=&nbsp;<V color={C.gold}>n</V>&nbsp;=&nbsp;<V>n</V>
+        <Sub>r</Sub>&nbsp;+&nbsp;<V>ℓ</V>&nbsp;+&nbsp;1
+      </Formula>
+      <Formula x={1480} y={290} p={B * formula} accent={C.gold} caption="energi hanya bergantung pada n (model Coulomb dasar)">
+        <V color={C.gold}>E</V>
+        <Sub>n</Sub>&nbsp;=&nbsp;−13,6&nbsp;eV&nbsp;·&nbsp;<Frac n={<><V>Z</V><Sup>2</Sup></>} d={<><V>n</V><Sup>2</Sup></>} />
+      </Formula>
     </AbsoluteFill>
   );
 };
