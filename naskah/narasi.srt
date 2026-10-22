@@ -1,0 +1,595 @@
+1
+00:00:01,600 --> 00:00:06,274
+Alirkan listrik ke dalam sebuah tabung berisi gas hidrogen.
+
+2
+00:00:06,274 --> 00:00:09,060
+Gas itu menyala merah muda.
+
+3
+00:00:09,060 --> 00:00:13,845
+Sekarang lewatkan cahayanya melalui sebuah prisma.
+
+4
+00:00:13,845 --> 00:00:16,598
+Kita tidak melihat pelangi yang utuh,
+
+5
+00:00:16,598 --> 00:00:23,612
+melainkan hanya beberapa garis tipis: merah, biru kehijauan, biru, dan ungu.
+
+6
+00:00:23,612 --> 00:00:26,688
+Mengapa hanya warna-warna itu?
+
+7
+00:00:26,688 --> 00:00:31,616
+Jawabannya tersimpan di dalam atom paling sederhana di alam semesta:
+
+8
+00:00:31,616 --> 00:00:34,303
+satu proton dan satu elektron.
+
+9
+00:00:43,300 --> 00:00:48,617
+Video ini membahas struktur dan spektrum atom hidrogen dalam tiga bagian.
+
+10
+00:00:48,617 --> 00:00:54,920
+Pertama, prinsip dan teori dasarnya: dari persamaan Schrödinger hingga bentuk orbital.
+
+11
+00:00:54,920 --> 00:01:02,566
+Kedua, implementasinya dalam kimia: energi ionisasi, deret spektrum, dan aturan seleksi.
+
+12
+00:01:02,566 --> 00:01:06,574
+Dan ketiga, penerapannya dalam dunia industri.
+
+13
+00:01:09,167 --> 00:01:15,281
+Atom hidrogen hanya berisi dua partikel: sebuah proton dan sebuah elektron.
+
+14
+00:01:15,281 --> 00:01:19,177
+Keduanya saling menarik melalui gaya Coulomb.
+
+15
+00:01:19,177 --> 00:01:24,783
+Energi potensialnya negatif, dan makin dalam ketika jaraknya makin dekat.
+
+16
+00:01:24,783 --> 00:01:31,121
+Proton sekitar seribu delapan ratus tiga puluh enam kali lebih berat daripada elektron,
+
+17
+00:01:31,121 --> 00:01:34,073
+tetapi ia tidak benar-benar diam.
+
+18
+00:01:34,073 --> 00:01:38,258
+Keduanya bergerak mengelilingi pusat massa bersama.
+
+19
+00:01:38,258 --> 00:01:45,751
+Karena itu gerak atom dipisah menjadi gerak seluruh atom, dan gerak relatif elektron terhadap inti.
+
+20
+00:01:45,751 --> 00:01:52,909
+Gerak relatif ini memakai massa tereduksi, mu: hasil kali kedua massa dibagi jumlahnya.
+
+21
+00:01:52,909 --> 00:02:03,720
+Untuk hidrogen, mu hanya sekitar nol koma nol lima persen lebih kecil daripada massa elektron, tetapi selisih kecil ini akan muncul kembali di spektrum.
+
+22
+00:02:03,720 --> 00:02:11,501
+Model yang sama berlaku untuk ion hidrogenik, yaitu spesies berelektron satu seperti He plus dan Li dua plus.
+
+23
+00:02:14,100 --> 00:02:19,240
+Potensial Coulomb hanya bergantung pada jarak r, bukan pada arah.
+
+24
+00:02:19,240 --> 00:02:26,131
+Karena itu kita memakai koordinat bola: jarak r, serta dua sudut, theta dan phi.
+
+25
+00:02:26,131 --> 00:02:29,639
+Fungsi gelombang dapat dipisah menjadi dua faktor:
+
+26
+00:02:29,639 --> 00:02:36,488
+fungsi radial R yang bergantung pada jarak, dikali harmonik sferis Y yang bergantung pada arah.
+
+27
+00:02:36,488 --> 00:02:41,428
+Bagian sudut sudah kita kenal dari gerak rotasi di modul lima.
+
+28
+00:02:41,428 --> 00:02:50,918
+Yang tersisa adalah persamaan radial, dan dengan substitusi u sama dengan r dikali R, ia menjadi persamaan satu dimensi.
+
+29
+00:02:50,918 --> 00:02:56,378
+Syaratnya: u bernilai nol di inti, dan meluruh menuju nol di kejauhan.
+
+30
+00:02:58,967 --> 00:03:03,718
+Persamaan radial itu mengandung sebuah potensial efektif.
+
+31
+00:03:03,718 --> 00:03:07,225
+Ia terdiri dari tarikan Coulomb yang negatif,
+
+32
+00:03:07,225 --> 00:03:14,652
+ditambah suku sentrifugal yang positif, sebanding dengan l kali l tambah satu, dibagi r kuadrat.
+
+33
+00:03:14,652 --> 00:03:22,198
+Untuk orbital s, l sama dengan nol, sehingga tidak ada penghalang: elektron boleh mendekati inti.
+
+34
+00:03:22,198 --> 00:03:27,904
+Untuk l yang lebih besar, muncul dinding di dekat inti yang mendorong elektron menjauh.
+
+35
+00:03:27,904 --> 00:03:34,484
+Suku ini bukan gaya baru; ia berasal dari energi kinetik gerak sudut elektron.
+
+36
+00:03:34,484 --> 00:03:42,076
+Inilah sebabnya orbital p dan d hampir tidak menyentuh inti, sedangkan orbital s menembus hingga ke pusat.
+
+37
+00:03:44,667 --> 00:03:48,674
+Lalu, dari mana datangnya tingkat energi yang diskret?
+
+38
+00:03:48,674 --> 00:03:54,280
+Ketika persamaan radial diselesaikan, solusinya berupa deret pangkat.
+
+39
+00:03:54,280 --> 00:04:01,684
+Jika deret itu dibiarkan tak berhingga, fungsinya meledak di kejauhan dan tidak dapat dinormalisasi.
+
+40
+00:04:01,684 --> 00:04:06,446
+Agar bermakna fisik, deret harus berhenti pada suatu suku.
+
+41
+00:04:06,446 --> 00:04:14,581
+Syarat berhenti inilah yang melahirkan bilangan kuantum utama, n: satu, dua, tiga, dan seterusnya.
+
+42
+00:04:14,581 --> 00:04:23,271
+Energinya: E n sama dengan minus tiga belas koma enam elektronvolt, dikali Z kuadrat, dibagi n kuadrat.
+
+43
+00:04:23,271 --> 00:04:35,037
+Untuk hidrogen, tingkat satu berada di minus tiga belas koma enam, tingkat dua di minus tiga koma empat, dan tingkat tiga di minus satu koma lima satu elektronvolt.
+
+44
+00:04:35,037 --> 00:04:41,509
+Makin tinggi n, tingkatnya makin rapat, hingga bertemu batas ionisasi di energi nol.
+
+45
+00:04:41,509 --> 00:04:48,535
+Jadi kuantisasi muncul dari syarat batas, bukan dari lintasan melingkar seperti pada model Bohr.
+
+46
+00:04:48,535 --> 00:04:57,637
+Pada model ini energi hanya bergantung pada n, sehingga setiap kulit memiliki n kuadrat orbital dengan energi yang sama.
+
+47
+00:05:00,233 --> 00:05:04,984
+Setiap orbital diberi alamat dengan tiga bilangan kuantum.
+
+48
+00:05:04,984 --> 00:05:09,447
+Bilangan kuantum utama n menentukan energi dan ukuran.
+
+49
+00:05:09,447 --> 00:05:18,148
+Bilangan kuantum orbital l bernilai dari nol hingga n dikurangi satu, dan menentukan bentuk: s, p, d, dan f.
+
+50
+00:05:18,148 --> 00:05:25,174
+Bilangan kuantum magnetik m l bernilai dari minus l hingga plus l, dan menentukan orientasi.
+
+51
+00:05:25,174 --> 00:05:34,487
+Jadi kulit pertama hanya memiliki satu orbital, kulit kedua empat, kulit ketiga sembilan, dan kulit keempat enam belas.
+
+52
+00:05:34,487 --> 00:05:42,091
+Ditambah spin elektron, plus atau minus setengah, setiap kulit menyediakan dua n kuadrat keadaan.
+
+53
+00:05:42,091 --> 00:05:53,525
+Contohnya, tiga, dua, minus dua adalah salah satu orbital tiga d, sedangkan dua, dua, nol tidak sah, karena l harus lebih kecil daripada n.
+
+54
+00:05:56,133 --> 00:05:59,086
+Sekarang kita lihat fungsi radialnya.
+
+55
+00:05:59,086 --> 00:06:08,897
+Ia tersusun dari tiga bagian: r pangkat l untuk perilaku dekat inti, eksponensial yang meluruh, dan polinomial Laguerre.
+
+56
+00:06:08,897 --> 00:06:19,762
+Untuk satu s, fungsinya sederhana: e pangkat minus r per a, dengan a adalah jari-jari Bohr, sekitar lima puluh dua koma sembilan pikometer.
+
+57
+00:06:19,762 --> 00:06:24,513
+Untuk dua s, fungsinya berganti tanda di r sama dengan dua a.
+
+58
+00:06:24,513 --> 00:06:31,093
+Titik itu disebut simpul radial: di sana peluang menemukan elektron sama dengan nol.
+
+59
+00:06:31,093 --> 00:06:35,844
+Jumlah simpul radial selalu n dikurangi l dikurangi satu.
+
+60
+00:06:35,844 --> 00:06:44,769
+Dua p tidak punya simpul radial, sedangkan tiga s punya dua, di sekitar satu koma sembilan a dan tujuh koma satu a.
+
+61
+00:06:44,769 --> 00:06:53,813
+Tanda negatif bukan peluang negatif; ia adalah fase gelombang, yang penting saat orbital bertumpang tindih membentuk ikatan.
+
+62
+00:06:56,400 --> 00:07:02,037
+Pertanyaan berikutnya: di mana elektron satu s paling mungkin ditemukan?
+
+63
+00:07:02,037 --> 00:07:06,811
+Kerapatan peluang, psi kuadrat, paling besar tepat di inti.
+
+64
+00:07:06,811 --> 00:07:09,952
+Tetapi ruang di dekat inti sangat sempit.
+
+65
+00:07:09,952 --> 00:07:14,980
+Bayangkan atom sebagai bawang yang tersusun dari kulit-kulit bola tipis.
+
+66
+00:07:14,980 --> 00:07:19,065
+Luas setiap kulit bertambah sebanding dengan r kuadrat.
+
+67
+00:07:19,065 --> 00:07:27,601
+Mengalikan kerapatan dengan luas kulit menghasilkan distribusi radial, P sama dengan r kuadrat dikali R kuadrat.
+
+68
+00:07:27,601 --> 00:07:32,541
+Kurva ini nol di inti, dan memuncak tepat pada satu jari-jari Bohr.
+
+69
+00:07:32,541 --> 00:07:35,028
+Itulah radius paling mungkin.
+
+70
+00:07:35,028 --> 00:07:46,028
+Namun radius rata-ratanya lebih besar, satu setengah a, dan peluang elektron berada di dalam satu jari-jari Bohr hanya sekitar tiga puluh dua persen.
+
+71
+00:07:46,028 --> 00:07:52,419
+Kedua gambaran ini tidak bertentangan; keduanya menjawab pertanyaan yang berbeda.
+
+72
+00:07:55,033 --> 00:08:00,928
+Gabungkan bagian radial dan bagian sudut, maka kita mendapat bentuk orbital.
+
+73
+00:08:00,928 --> 00:08:04,835
+Orbital s berbentuk bola, sama ke segala arah.
+
+74
+00:08:04,835 --> 00:08:10,164
+Dua s adalah bola di dalam bola, dipisahkan oleh simpul radial.
+
+75
+00:08:10,164 --> 00:08:17,756
+Orbital p berbentuk dua cuping dengan fase berlawanan, dipisahkan oleh bidang simpul yang melewati inti.
+
+76
+00:08:17,756 --> 00:08:24,182
+Ada tiga orbital p: p x, p y, dan p z, masing-masing searah satu sumbu.
+
+77
+00:08:24,182 --> 00:08:30,165
+Orbital d memiliki dua permukaan simpul sudut, dan ada lima orientasi.
+
+78
+00:08:30,165 --> 00:08:38,346
+Empat di antaranya berbentuk daun semanggi, dan satu, d z kuadrat, berbentuk dua cuping dengan cincin di tengahnya.
+
+79
+00:08:38,346 --> 00:08:47,036
+Ingat: orbital adalah fungsi gelombang, bukan lintasan. Awan ini menggambarkan di mana elektron mungkin ditemukan.
+
+80
+00:08:49,633 --> 00:08:53,907
+Sekarang kita masuk ke besaran kimia yang bisa diukur.
+
+81
+00:08:53,907 --> 00:09:01,865
+Energi ionisasi adalah energi untuk melepaskan elektron dari suatu tingkat hingga ke batas energi nol.
+
+82
+00:09:01,865 --> 00:09:07,271
+Dari keadaan dasar hidrogen, besarnya tiga belas koma enam elektronvolt,
+
+83
+00:09:07,271 --> 00:09:12,311
+atau sekitar seribu tiga ratus dua belas kilojoule per mol.
+
+84
+00:09:12,311 --> 00:09:18,216
+Dari tingkat dua, cukup tiga koma empat elektronvolt, empat kali lebih kecil.
+
+85
+00:09:18,216 --> 00:09:27,927
+Untuk ion He plus, muatan intinya dua kali lipat, sehingga energinya empat kali lipat: lima puluh empat koma empat elektronvolt.
+
+86
+00:09:27,927 --> 00:09:37,449
+Hati-hati: angka ini bukan energi ionisasi atom helium netral, karena atom netral punya dua elektron yang saling tolak.
+
+87
+00:09:37,449 --> 00:09:52,165
+Teorema virial memberi gambaran menarik: pada keadaan dasar, energi kinetik rata-rata elektron plus tiga belas koma enam, dan energi potensialnya minus dua puluh tujuh koma dua elektronvolt.
+
+88
+00:09:54,767 --> 00:10:02,259
+Ketika elektron turun dari tingkat yang lebih tinggi ke tingkat yang lebih rendah, ia memancarkan sebuah foton.
+
+89
+00:10:02,259 --> 00:10:06,721
+Energi foton itu tepat sama dengan selisih kedua tingkat.
+
+90
+00:10:06,721 --> 00:10:17,475
+Hasilnya adalah rumus Rydberg: satu per lambda sama dengan R kali Z kuadrat, dikali satu per n akhir kuadrat dikurangi satu per n awal kuadrat.
+
+91
+00:10:17,475 --> 00:10:23,547
+Semua garis yang berakhir di tingkat satu membentuk deret Lyman, di daerah ultraviolet.
+
+92
+00:10:23,547 --> 00:10:29,830
+Yang terkuat, Lyman alfa, berada di seratus dua puluh satu koma enam nanometer.
+
+93
+00:10:29,830 --> 00:10:37,511
+Garis yang berakhir di tingkat dua membentuk deret Balmer, satu-satunya deret yang garis awalnya tampak oleh mata.
+
+94
+00:10:37,511 --> 00:10:42,906
+Tiga ke dua memberi garis merah di enam ratus lima puluh enam nanometer,
+
+95
+00:10:42,906 --> 00:10:54,849
+empat ke dua biru kehijauan di empat ratus delapan puluh enam, lima ke dua biru di empat ratus tiga puluh empat, dan enam ke dua ungu di empat ratus sepuluh.
+
+96
+00:10:54,849 --> 00:11:00,166
+Inilah empat garis yang kita lihat dari tabung hidrogen di awal video.
+
+97
+00:11:00,166 --> 00:11:05,772
+Garis yang berakhir di tingkat tiga membentuk deret Paschen, di daerah inframerah.
+
+98
+00:11:05,772 --> 00:11:18,612
+Makin tinggi tingkat awalnya, garis makin rapat, sampai mencapai batas deret: sekitar sembilan puluh satu nanometer untuk Lyman, dan tiga ratus enam puluh lima nanometer untuk Balmer.
+
+99
+00:11:21,200 --> 00:11:26,417
+Tetapi tidak semua pasangan tingkat dapat dihubungkan oleh satu foton.
+
+100
+00:11:26,417 --> 00:11:29,747
+Foton membawa satu satuan momentum sudut.
+
+101
+00:11:29,747 --> 00:11:38,137
+Karena itu, pada transisi dipol listrik, l harus berubah tepat satu: delta l sama dengan plus atau minus satu.
+
+102
+00:11:38,137 --> 00:11:42,333
+Dan m l hanya boleh berubah nol, atau plus minus satu.
+
+103
+00:11:42,333 --> 00:11:48,959
+Pada diagram Grotrian ini, tingkat-tingkat disusun per subkulit: s, p, d, dan f.
+
+104
+00:11:48,959 --> 00:11:53,244
+Dua p ke satu s diizinkan, dan memancarkan Lyman alfa.
+
+105
+00:11:53,244 --> 00:11:57,529
+Dua s ke satu s terlarang, karena l tidak berubah.
+
+106
+00:11:57,529 --> 00:12:04,755
+Tiga d ke dua p diizinkan, tetapi tiga d ke satu s terlarang, karena l berubah dua.
+
+107
+00:12:04,755 --> 00:12:11,169
+Perhatikan: tidak ada aturan untuk n. Bilangan n boleh melompat berapa pun.
+
+108
+00:12:11,169 --> 00:12:22,478
+Kata terlarang hanya berlaku untuk mekanisme dipol listrik satu foton; keadaan dua s tetap bisa meluruh lewat jalan lain, misalnya memancarkan dua foton.
+
+109
+00:12:25,067 --> 00:12:32,602
+Rumus Rydberg juga bisa dipakai terbalik: dari garis-garis spektrum, kita menghitung energi ionisasi.
+
+110
+00:12:32,602 --> 00:12:35,832
+Ambil enam garis deret Lyman hasil pengukuran.
+
+111
+00:12:35,832 --> 00:12:42,092
+Plot bilangan gelombang setiap garis terhadap satu dikurangi satu per n awal kuadrat.
+
+112
+00:12:42,092 --> 00:12:47,121
+Titik-titiknya jatuh pada satu garis lurus yang melewati titik asal.
+
+113
+00:12:47,121 --> 00:12:56,343
+Kemiringannya adalah konstanta Rydberg: sekitar seratus sembilan ribu enam ratus tujuh puluh sembilan sentimeter pangkat minus satu.
+
+114
+00:12:56,343 --> 00:13:04,078
+Dikali h c, kita memperoleh energi ionisasi hidrogen: tiga belas koma enam elektronvolt.
+
+115
+00:13:04,078 --> 00:13:10,238
+Cara yang sama pada garis Balmer deuterium memberi konstanta yang sedikit lebih besar.
+
+116
+00:13:10,238 --> 00:13:16,918
+Ingat massa tereduksi: inti deuterium lebih berat, sehingga mu sedikit lebih besar.
+
+117
+00:13:16,918 --> 00:13:26,198
+Akibatnya garis Balmer alfa deuterium bergeser sekitar nol koma satu delapan nanometer ke arah panjang gelombang yang lebih pendek.
+
+118
+00:13:26,198 --> 00:13:36,420
+Pergeseran isotop sekecil inilah yang dipakai Harold Urey untuk menemukan deuterium pada awal tahun seribu sembilan ratus tiga puluhan.
+
+119
+00:13:39,033 --> 00:13:43,318
+Model ini sangat berhasil, tetapi tetap sebuah model.
+
+120
+00:13:43,318 --> 00:13:50,433
+Dengan spektrometer beresolusi tinggi, setiap garis ternyata terbelah menjadi beberapa komponen.
+
+121
+00:13:50,433 --> 00:13:58,503
+Efek relativistik dan interaksi spin orbit menghasilkan struktur halus, ditambah pergeseran Lamb dan struktur hiperhalus.
+
+122
+00:13:58,503 --> 00:14:05,052
+Pada atom berelektron banyak, elektron saling tolak dan saling melindungi dari tarikan inti.
+
+123
+00:14:05,052 --> 00:14:13,719
+Akibatnya, dua s dan dua p tidak lagi berenergi sama; orbital s yang lebih menembus inti menjadi lebih rendah.
+
+124
+00:14:13,719 --> 00:14:18,925
+Namun bentuk dan nama orbital hidrogen tetap menjadi bahasa dasar kimia:
+
+125
+00:14:18,925 --> 00:14:28,838
+konfigurasi elektron, tabel periodik, arah ikatan, dan bentuk molekul, semuanya dibangun dari orbital s, p, dan d ini.
+
+126
+00:14:31,433 --> 00:14:37,028
+Spektrum atom hidrogen juga bekerja setiap hari di laboratorium industri.
+
+127
+00:14:37,028 --> 00:14:44,886
+Spektrofotometer UV-Vis dan detektor HPLC memakai lampu deuterium sebagai sumber cahaya ultraviolet.
+
+128
+00:14:44,886 --> 00:14:54,454
+Lucutan listrik dalam gas deuterium menghasilkan cahaya kontinu, kira-kira dari seratus sembilan puluh hingga empat ratus nanometer.
+
+129
+00:14:54,454 --> 00:15:05,443
+Lampu yang sama juga memancarkan garis Balmer deuterium yang tajam, di empat ratus delapan puluh enam dan enam ratus lima puluh enam koma satu nanometer.
+
+130
+00:15:05,443 --> 00:15:15,488
+Karena posisinya ditentukan oleh hukum kuantum, garis ini dipakai sebagai penggaris untuk memeriksa ketepatan panjang gelombang instrumen.
+
+131
+00:15:15,488 --> 00:15:22,781
+Farmakope mencantumkan garis-garis ini dalam uji kualifikasi spektrofotometer di industri obat.
+
+132
+00:15:22,781 --> 00:15:29,807
+Jika puncak yang terbaca bergeser, instrumen dikalibrasi ulang sebelum dipakai mengukur kadar zat.
+
+133
+00:15:32,400 --> 00:15:40,878
+Prinsip yang sama berlaku untuk semua unsur: setiap atom punya tangga energi sendiri, sehingga garis spektrumnya khas.
+
+134
+00:15:40,878 --> 00:15:45,152
+Inilah dasar spektroskopi emisi atom dan serapan atom.
+
+135
+00:15:45,152 --> 00:15:53,022
+Pada ICP-OES, sampel disemprotkan ke dalam plasma argon yang suhunya sekitar enam ribu hingga sepuluh ribu kelvin.
+
+136
+00:15:53,022 --> 00:16:00,803
+Atom-atom tereksitasi lalu memancarkan garisnya sendiri, dan intensitas garis sebanding dengan kadar unsur.
+
+137
+00:16:00,803 --> 00:16:08,995
+Industri air minum, pangan, dan farmasi memakainya untuk memantau logam berat seperti timbal, kadmium, dan arsen.
+
+138
+00:16:08,995 --> 00:16:18,952
+Di pabrik semikonduktor, spektroskopi emisi optik memantau cahaya plasma etsa secara langsung, untuk menentukan kapan proses harus dihentikan.
+
+139
+00:16:18,952 --> 00:16:25,590
+Dan pelebaran garis Balmer dipakai untuk mengukur kerapatan elektron di dalam plasma industri.
+
+140
+00:16:25,590 --> 00:16:32,428
+Dari satu proton dan satu elektron, lahir alat ukur yang menjaga mutu produk di berbagai sektor.
+
+141
+00:16:35,033 --> 00:16:38,275
+Mari kita rangkai seluruh perjalanannya.
+
+142
+00:16:38,275 --> 00:16:45,856
+Atom hidrogen adalah satu elektron yang terikat pada inti oleh gaya Coulomb, dengan massa tereduksi mu.
+
+143
+00:16:45,856 --> 00:16:50,784
+Fungsi gelombangnya terpisah menjadi bagian radial dan harmonik sferis.
+
+144
+00:16:50,784 --> 00:16:58,554
+Syarat batas melahirkan bilangan kuantum, dengan energi minus tiga belas koma enam per n kuadrat elektronvolt.
+
+145
+00:16:58,554 --> 00:17:05,014
+Simpul, distribusi radial, dan bentuk orbital menggambarkan di mana elektron mungkin berada.
+
+146
+00:17:05,014 --> 00:17:13,728
+Lompatan antartingkat memancarkan foton sesuai rumus Rydberg, dibatasi aturan seleksi delta l sama dengan plus atau minus satu.
+
+147
+00:17:13,728 --> 00:17:20,211
+Dan garis-garis itu menjadi penggaris cahaya bagi laboratorium dan industri.
+
+148
+00:17:20,211 --> 00:17:25,239
+Jadi, lain kali kamu melihat cahaya merah muda dari tabung hidrogen,
+
+149
+00:17:25,239 --> 00:17:34,341
+ingatlah bahwa setiap warnanya adalah jejak satu elektron yang berpindah tangga di dalam atom paling sederhana di alam semesta.

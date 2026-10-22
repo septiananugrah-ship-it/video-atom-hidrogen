@@ -1,0 +1,202 @@
+[00:00] Cahaya dari tabung hidrogen
+
+Alirkan listrik ke dalam sebuah tabung berisi gas hidrogen.
+Gas itu menyala merah muda.
+Sekarang lewatkan cahayanya melalui sebuah prisma.
+Kita tidak melihat pelangi yang utuh,
+melainkan hanya beberapa garis tipis: merah, biru kehijauan, biru, dan ungu.
+Mengapa hanya warna-warna itu?
+Jawabannya tersimpan di dalam atom paling sederhana di alam semesta:
+satu proton dan satu elektron.
+
+[00:42] Peta video
+
+Video ini membahas struktur dan spektrum atom hidrogen dalam tiga bagian.
+Pertama, prinsip dan teori dasarnya: dari persamaan Schrödinger hingga bentuk orbital.
+Kedua, implementasinya dalam kimia: energi ionisasi, deret spektrum, dan aturan seleksi.
+Dan ketiga, penerapannya dalam dunia industri.
+
+[01:07] Bab 01 — Satu proton, satu elektron
+
+Atom hidrogen hanya berisi dua partikel: sebuah proton dan sebuah elektron.
+Keduanya saling menarik melalui gaya Coulomb.
+Energi potensialnya negatif, dan makin dalam ketika jaraknya makin dekat.
+Proton sekitar seribu delapan ratus tiga puluh enam kali lebih berat daripada elektron,
+tetapi ia tidak benar-benar diam.
+Keduanya bergerak mengelilingi pusat massa bersama.
+Karena itu gerak atom dipisah menjadi gerak seluruh atom, dan gerak relatif elektron terhadap inti.
+Gerak relatif ini memakai massa tereduksi, mu: hasil kali kedua massa dibagi jumlahnya.
+Untuk hidrogen, mu hanya sekitar nol koma nol lima persen lebih kecil daripada massa elektron, tetapi selisih kecil ini akan muncul kembali di spektrum.
+Model yang sama berlaku untuk ion hidrogenik, yaitu spesies berelektron satu seperti He plus dan Li dua plus.
+
+[02:13] Bab 02 — Memisahkan jarak dan arah
+
+Potensial Coulomb hanya bergantung pada jarak r, bukan pada arah.
+Karena itu kita memakai koordinat bola: jarak r, serta dua sudut, theta dan phi.
+Fungsi gelombang dapat dipisah menjadi dua faktor:
+fungsi radial R yang bergantung pada jarak, dikali harmonik sferis Y yang bergantung pada arah.
+Bagian sudut sudah kita kenal dari gerak rotasi di modul lima.
+Yang tersisa adalah persamaan radial, dan dengan substitusi u sama dengan r dikali R, ia menjadi persamaan satu dimensi.
+Syaratnya: u bernilai nol di inti, dan meluruh menuju nol di kejauhan.
+
+[02:57] Bab 03 — Potensial efektif
+
+Persamaan radial itu mengandung sebuah potensial efektif.
+Ia terdiri dari tarikan Coulomb yang negatif,
+ditambah suku sentrifugal yang positif, sebanding dengan l kali l tambah satu, dibagi r kuadrat.
+Untuk orbital s, l sama dengan nol, sehingga tidak ada penghalang: elektron boleh mendekati inti.
+Untuk l yang lebih besar, muncul dinding di dekat inti yang mendorong elektron menjauh.
+Suku ini bukan gaya baru; ia berasal dari energi kinetik gerak sudut elektron.
+Inilah sebabnya orbital p dan d hampir tidak menyentuh inti, sedangkan orbital s menembus hingga ke pusat.
+
+[03:43] Bab 04 — Asal kuantisasi energi
+
+Lalu, dari mana datangnya tingkat energi yang diskret?
+Ketika persamaan radial diselesaikan, solusinya berupa deret pangkat.
+Jika deret itu dibiarkan tak berhingga, fungsinya meledak di kejauhan dan tidak dapat dinormalisasi.
+Agar bermakna fisik, deret harus berhenti pada suatu suku.
+Syarat berhenti inilah yang melahirkan bilangan kuantum utama, n: satu, dua, tiga, dan seterusnya.
+Energinya: E n sama dengan minus tiga belas koma enam elektronvolt, dikali Z kuadrat, dibagi n kuadrat.
+Untuk hidrogen, tingkat satu berada di minus tiga belas koma enam, tingkat dua di minus tiga koma empat, dan tingkat tiga di minus satu koma lima satu elektronvolt.
+Makin tinggi n, tingkatnya makin rapat, hingga bertemu batas ionisasi di energi nol.
+Jadi kuantisasi muncul dari syarat batas, bukan dari lintasan melingkar seperti pada model Bohr.
+Pada model ini energi hanya bergantung pada n, sehingga setiap kulit memiliki n kuadrat orbital dengan energi yang sama.
+
+[04:59] Bab 05 — Alamat sebuah orbital
+
+Setiap orbital diberi alamat dengan tiga bilangan kuantum.
+Bilangan kuantum utama n menentukan energi dan ukuran.
+Bilangan kuantum orbital l bernilai dari nol hingga n dikurangi satu, dan menentukan bentuk: s, p, d, dan f.
+Bilangan kuantum magnetik m l bernilai dari minus l hingga plus l, dan menentukan orientasi.
+Jadi kulit pertama hanya memiliki satu orbital, kulit kedua empat, kulit ketiga sembilan, dan kulit keempat enam belas.
+Ditambah spin elektron, plus atau minus setengah, setiap kulit menyediakan dua n kuadrat keadaan.
+Contohnya, tiga, dua, minus dua adalah salah satu orbital tiga d, sedangkan dua, dua, nol tidak sah, karena l harus lebih kecil daripada n.
+
+[05:55] Bab 06 — Fungsi radial dan simpul
+
+Sekarang kita lihat fungsi radialnya.
+Ia tersusun dari tiga bagian: r pangkat l untuk perilaku dekat inti, eksponensial yang meluruh, dan polinomial Laguerre.
+Untuk satu s, fungsinya sederhana: e pangkat minus r per a, dengan a adalah jari-jari Bohr, sekitar lima puluh dua koma sembilan pikometer.
+Untuk dua s, fungsinya berganti tanda di r sama dengan dua a.
+Titik itu disebut simpul radial: di sana peluang menemukan elektron sama dengan nol.
+Jumlah simpul radial selalu n dikurangi l dikurangi satu.
+Dua p tidak punya simpul radial, sedangkan tiga s punya dua, di sekitar satu koma sembilan a dan tujuh koma satu a.
+Tanda negatif bukan peluang negatif; ia adalah fase gelombang, yang penting saat orbital bertumpang tindih membentuk ikatan.
+
+[06:55] Bab 07 — Di mana elektron paling mungkin berada?
+
+Pertanyaan berikutnya: di mana elektron satu s paling mungkin ditemukan?
+Kerapatan peluang, psi kuadrat, paling besar tepat di inti.
+Tetapi ruang di dekat inti sangat sempit.
+Bayangkan atom sebagai bawang yang tersusun dari kulit-kulit bola tipis.
+Luas setiap kulit bertambah sebanding dengan r kuadrat.
+Mengalikan kerapatan dengan luas kulit menghasilkan distribusi radial, P sama dengan r kuadrat dikali R kuadrat.
+Kurva ini nol di inti, dan memuncak tepat pada satu jari-jari Bohr.
+Itulah radius paling mungkin.
+Namun radius rata-ratanya lebih besar, satu setengah a, dan peluang elektron berada di dalam satu jari-jari Bohr hanya sekitar tiga puluh dua persen.
+Kedua gambaran ini tidak bertentangan; keduanya menjawab pertanyaan yang berbeda.
+
+[07:54] Bab 08 — Bentuk orbital s, p, dan d
+
+Gabungkan bagian radial dan bagian sudut, maka kita mendapat bentuk orbital.
+Orbital s berbentuk bola, sama ke segala arah.
+Dua s adalah bola di dalam bola, dipisahkan oleh simpul radial.
+Orbital p berbentuk dua cuping dengan fase berlawanan, dipisahkan oleh bidang simpul yang melewati inti.
+Ada tiga orbital p: p x, p y, dan p z, masing-masing searah satu sumbu.
+Orbital d memiliki dua permukaan simpul sudut, dan ada lima orientasi.
+Empat di antaranya berbentuk daun semanggi, dan satu, d z kuadrat, berbentuk dua cuping dengan cincin di tengahnya.
+Ingat: orbital adalah fungsi gelombang, bukan lintasan. Awan ini menggambarkan di mana elektron mungkin ditemukan.
+
+[08:48] Bab 09 — Energi ionisasi
+
+Sekarang kita masuk ke besaran kimia yang bisa diukur.
+Energi ionisasi adalah energi untuk melepaskan elektron dari suatu tingkat hingga ke batas energi nol.
+Dari keadaan dasar hidrogen, besarnya tiga belas koma enam elektronvolt,
+atau sekitar seribu tiga ratus dua belas kilojoule per mol.
+Dari tingkat dua, cukup tiga koma empat elektronvolt, empat kali lebih kecil.
+Untuk ion He plus, muatan intinya dua kali lipat, sehingga energinya empat kali lipat: lima puluh empat koma empat elektronvolt.
+Hati-hati: angka ini bukan energi ionisasi atom helium netral, karena atom netral punya dua elektron yang saling tolak.
+Teorema virial memberi gambaran menarik: pada keadaan dasar, energi kinetik rata-rata elektron plus tiga belas koma enam, dan energi potensialnya minus dua puluh tujuh koma dua elektronvolt.
+
+[09:53] Bab 10 — Deret Lyman, Balmer, Paschen
+
+Ketika elektron turun dari tingkat yang lebih tinggi ke tingkat yang lebih rendah, ia memancarkan sebuah foton.
+Energi foton itu tepat sama dengan selisih kedua tingkat.
+Hasilnya adalah rumus Rydberg: satu per lambda sama dengan R kali Z kuadrat, dikali satu per n akhir kuadrat dikurangi satu per n awal kuadrat.
+Semua garis yang berakhir di tingkat satu membentuk deret Lyman, di daerah ultraviolet.
+Yang terkuat, Lyman alfa, berada di seratus dua puluh satu koma enam nanometer.
+Garis yang berakhir di tingkat dua membentuk deret Balmer, satu-satunya deret yang garis awalnya tampak oleh mata.
+Tiga ke dua memberi garis merah di enam ratus lima puluh enam nanometer,
+empat ke dua biru kehijauan di empat ratus delapan puluh enam, lima ke dua biru di empat ratus tiga puluh empat, dan enam ke dua ungu di empat ratus sepuluh.
+Inilah empat garis yang kita lihat dari tabung hidrogen di awal video.
+Garis yang berakhir di tingkat tiga membentuk deret Paschen, di daerah inframerah.
+Makin tinggi tingkat awalnya, garis makin rapat, sampai mencapai batas deret: sekitar sembilan puluh satu nanometer untuk Lyman, dan tiga ratus enam puluh lima nanometer untuk Balmer.
+
+[11:20] Bab 11 — Aturan seleksi
+
+Tetapi tidak semua pasangan tingkat dapat dihubungkan oleh satu foton.
+Foton membawa satu satuan momentum sudut.
+Karena itu, pada transisi dipol listrik, l harus berubah tepat satu: delta l sama dengan plus atau minus satu.
+Dan m l hanya boleh berubah nol, atau plus minus satu.
+Pada diagram Grotrian ini, tingkat-tingkat disusun per subkulit: s, p, d, dan f.
+Dua p ke satu s diizinkan, dan memancarkan Lyman alfa.
+Dua s ke satu s terlarang, karena l tidak berubah.
+Tiga d ke dua p diizinkan, tetapi tiga d ke satu s terlarang, karena l berubah dua.
+Perhatikan: tidak ada aturan untuk n. Bilangan n boleh melompat berapa pun.
+Kata terlarang hanya berlaku untuk mekanisme dipol listrik satu foton; keadaan dua s tetap bisa meluruh lewat jalan lain, misalnya memancarkan dua foton.
+
+[12:24] Bab 12 — Mengukur energi ionisasi dari spektrum
+
+Rumus Rydberg juga bisa dipakai terbalik: dari garis-garis spektrum, kita menghitung energi ionisasi.
+Ambil enam garis deret Lyman hasil pengukuran.
+Plot bilangan gelombang setiap garis terhadap satu dikurangi satu per n awal kuadrat.
+Titik-titiknya jatuh pada satu garis lurus yang melewati titik asal.
+Kemiringannya adalah konstanta Rydberg: sekitar seratus sembilan ribu enam ratus tujuh puluh sembilan sentimeter pangkat minus satu.
+Dikali h c, kita memperoleh energi ionisasi hidrogen: tiga belas koma enam elektronvolt.
+Cara yang sama pada garis Balmer deuterium memberi konstanta yang sedikit lebih besar.
+Ingat massa tereduksi: inti deuterium lebih berat, sehingga mu sedikit lebih besar.
+Akibatnya garis Balmer alfa deuterium bergeser sekitar nol koma satu delapan nanometer ke arah panjang gelombang yang lebih pendek.
+Pergeseran isotop sekecil inilah yang dipakai Harold Urey untuk menemukan deuterium pada awal tahun seribu sembilan ratus tiga puluhan.
+
+[13:38] Bab 13 — Dari hidrogen ke tabel periodik
+
+Model ini sangat berhasil, tetapi tetap sebuah model.
+Dengan spektrometer beresolusi tinggi, setiap garis ternyata terbelah menjadi beberapa komponen.
+Efek relativistik dan interaksi spin orbit menghasilkan struktur halus, ditambah pergeseran Lamb dan struktur hiperhalus.
+Pada atom berelektron banyak, elektron saling tolak dan saling melindungi dari tarikan inti.
+Akibatnya, dua s dan dua p tidak lagi berenergi sama; orbital s yang lebih menembus inti menjadi lebih rendah.
+Namun bentuk dan nama orbital hidrogen tetap menjadi bahasa dasar kimia:
+konfigurasi elektron, tabel periodik, arah ikatan, dan bentuk molekul, semuanya dibangun dari orbital s, p, dan d ini.
+
+[14:30] Bab 14 — Lampu deuterium & kalibrasi
+
+Spektrum atom hidrogen juga bekerja setiap hari di laboratorium industri.
+Spektrofotometer UV-Vis dan detektor HPLC memakai lampu deuterium sebagai sumber cahaya ultraviolet.
+Lucutan listrik dalam gas deuterium menghasilkan cahaya kontinu, kira-kira dari seratus sembilan puluh hingga empat ratus nanometer.
+Lampu yang sama juga memancarkan garis Balmer deuterium yang tajam, di empat ratus delapan puluh enam dan enam ratus lima puluh enam koma satu nanometer.
+Karena posisinya ditentukan oleh hukum kuantum, garis ini dipakai sebagai penggaris untuk memeriksa ketepatan panjang gelombang instrumen.
+Farmakope mencantumkan garis-garis ini dalam uji kualifikasi spektrofotometer di industri obat.
+Jika puncak yang terbaca bergeser, instrumen dikalibrasi ulang sebelum dipakai mengukur kadar zat.
+
+[15:31] Bab 15 — Spektroskopi emisi atom
+
+Prinsip yang sama berlaku untuk semua unsur: setiap atom punya tangga energi sendiri, sehingga garis spektrumnya khas.
+Inilah dasar spektroskopi emisi atom dan serapan atom.
+Pada ICP-OES, sampel disemprotkan ke dalam plasma argon yang suhunya sekitar enam ribu hingga sepuluh ribu kelvin.
+Atom-atom tereksitasi lalu memancarkan garisnya sendiri, dan intensitas garis sebanding dengan kadar unsur.
+Industri air minum, pangan, dan farmasi memakainya untuk memantau logam berat seperti timbal, kadmium, dan arsen.
+Di pabrik semikonduktor, spektroskopi emisi optik memantau cahaya plasma etsa secara langsung, untuk menentukan kapan proses harus dihentikan.
+Dan pelebaran garis Balmer dipakai untuk mengukur kerapatan elektron di dalam plasma industri.
+Dari satu proton dan satu elektron, lahir alat ukur yang menjaga mutu produk di berbagai sektor.
+
+[16:34] Bab 16 — Merangkai semuanya
+
+Mari kita rangkai seluruh perjalanannya.
+Atom hidrogen adalah satu elektron yang terikat pada inti oleh gaya Coulomb, dengan massa tereduksi mu.
+Fungsi gelombangnya terpisah menjadi bagian radial dan harmonik sferis.
+Syarat batas melahirkan bilangan kuantum, dengan energi minus tiga belas koma enam per n kuadrat elektronvolt.
+Simpul, distribusi radial, dan bentuk orbital menggambarkan di mana elektron mungkin berada.
+Lompatan antartingkat memancarkan foton sesuai rumus Rydberg, dibatasi aturan seleksi delta l sama dengan plus atau minus satu.
+Dan garis-garis itu menjadi penggaris cahaya bagi laboratorium dan industri.
+Jadi, lain kali kamu melihat cahaya merah muda dari tabung hidrogen,
+ingatlah bahwa setiap warnanya adalah jejak satu elektron yang berpindah tangga di dalam atom paling sederhana di alam semesta.

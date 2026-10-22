@@ -1,0 +1,27 @@
+Kimia Kuantum — Struktur & Spektrum Atom Hidrogen (Modul 6)
+
+00:00 Pembuka: cahaya dari tabung hidrogen
+00:42 Peta video
+
+BAGIAN 1 · Prinsip & teori dasar
+01:07 Bab 01 · Satu proton, satu elektron
+02:13 Bab 02 · Memisahkan jarak dan arah
+02:57 Bab 03 · Potensial efektif
+03:43 Bab 04 · Asal kuantisasi energi
+04:59 Bab 05 · Alamat sebuah orbital
+05:55 Bab 06 · Fungsi radial dan simpul
+06:55 Bab 07 · Di mana elektron paling mungkin berada?
+07:54 Bab 08 · Bentuk orbital s, p, dan d
+
+BAGIAN 2 · Implementasi dalam kimia
+08:48 Bab 09 · Energi ionisasi
+09:53 Bab 10 · Deret Lyman, Balmer, Paschen
+11:20 Bab 11 · Aturan seleksi
+12:24 Bab 12 · Mengukur energi ionisasi dari spektrum
+13:38 Bab 13 · Dari hidrogen ke tabel periodik
+
+BAGIAN 3 · Penerapan di industri
+14:30 Bab 14 · Lampu deuterium & kalibrasi
+15:31 Bab 15 · Spektroskopi emisi atom
+
+16:34 Bab 16 · Merangkai semuanya
