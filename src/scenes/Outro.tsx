@@ -2,7 +2,7 @@ import React from 'react';
 import {AbsoluteFill} from 'remotion';
 import {EASE_IN_OUT, ramp} from '../anim';
 import {Glow, Stage} from '../components/primitives';
-import {Nucleus, OrbitalCloud} from '../components/viz';
+import {OrbitalCloud} from '../components/viz';
 import {useScene} from '../SceneContext';
 import {C, FONT} from '../theme';
 
@@ -32,7 +32,6 @@ export const Outro: React.FC = () => {
       <Stage>
         <Glow x={960} y={330} r={500} color="gold" opacity={0.18} />
         <OrbitalCloud id="3dz2" x={960} y={330} size={330} yaw={t * 0.3} pitch={0.45} p={cloud} opacity={0.22} dot={2} />
-        <Nucleus x={960} y={330} r={8} opacity={cloud} />
       </Stage>
       <AbsoluteFill style={{alignItems: 'center', paddingTop: 150}}>
         <div style={{fontFamily: FONT.sans, fontSize: 30, letterSpacing: 18, color: C.ink, fontWeight: 300, opacity: a}}>STRUKTUR &amp; SPEKTRUM</div>

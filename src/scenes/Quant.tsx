@@ -7,7 +7,7 @@ import {useScene} from '../SceneContext';
 import {C, FONT} from '../theme';
 
 // Diagram tingkat energi (skala linear eV).
-const D = {x0: 180, x1: 820, top: 230, bottom: 820};
+const D = {x0: 250, x1: 860, top: 230, bottom: 820};
 const eY = (e: number) => mix(D.bottom, D.top, (e + 14.2) / 15.2);
 const LV = [1, 2, 3, 4, 5, 6, 7, 8];
 const COLS = [C.gold, C.cyan, C.violet, C.mint, C.pink, C.blue, C.amber, C.muted];

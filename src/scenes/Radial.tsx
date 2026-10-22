@@ -123,7 +123,7 @@ export const Radial: React.FC = () => {
           </Label>
         </g>
       </Stage>
-      <Formula x={880} y={205} p={parts * (1 - ramp(t, cue(2), cue(2) + 0.6))} accent={C.gold} caption="perilaku dekat inti · peluruhan · simpul">
+      <Formula x={960} y={235} p={parts * (1 - ramp(t, cue(2), cue(2) + 0.6))} accent={C.gold} caption="perilaku dekat inti · peluruhan · simpul">
         <V>R</V>
         <Sub>nℓ</Sub>&nbsp;∝&nbsp;<span style={{color: C.mint}}><V>ρ</V><Sup>ℓ</Sup></span>&nbsp;·&nbsp;
         <span style={{color: C.cyan}}>
@@ -134,7 +134,7 @@ export const Radial: React.FC = () => {
         </span>
         &nbsp;·&nbsp;<span style={{color: C.violet}}><V>L</V>(<V>ρ</V>)</span>
       </Formula>
-      <Formula x={880} y={205} p={ramp(t, cue(2) + 0.2, cue(2) + 1) * (1 - rule)} accent={C.gold} caption="a ≈ a₀ = 52,9 pm (jari-jari Bohr)">
+      <Formula x={960} y={235} p={ramp(t, cue(2) + 0.2, cue(2) + 1) * (1 - rule)} accent={C.gold} caption="a ≈ a₀ = 52,9 pm (jari-jari Bohr)">
         <V>R</V>
         <Sub>1s</Sub>&nbsp;=&nbsp;<Frac n="2" d={<><V>a</V><Sup><Frac n="3" d="2" size={0.9} /></Sup></>} />
         <V>e</V>
@@ -142,7 +142,7 @@ export const Radial: React.FC = () => {
           −<Frac n={<V>r</V>} d={<V>a</V>} size={0.9} />
         </Sup>
       </Formula>
-      <Formula x={880} y={205} p={rule} accent={C.violet}>
+      <Formula x={960} y={235} p={rule} accent={C.violet}>
         <span style={{fontFamily: 'Outfit, sans-serif', fontSize: '0.8em'}}>simpul radial</span>&nbsp;=&nbsp;<V color={C.violet}>n</V>&nbsp;−&nbsp;<V>ℓ</V>&nbsp;−&nbsp;1
       </Formula>
       <Card x={1860} y={730} opacity={phase} accent={C.cyan} anchor="right" style={{fontSize: 30}}>

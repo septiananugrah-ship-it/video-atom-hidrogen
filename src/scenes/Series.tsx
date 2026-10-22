@@ -7,7 +7,7 @@ import {useScene} from '../SceneContext';
 import {C} from '../theme';
 
 // Diagram tingkat (linear eV) di atas, pita spektrum (skala log λ) di bawah.
-const D = {x0: 160, x1: 1760, top: 200, bottom: 600};
+const D = {x0: 190, x1: 1760, top: 200, bottom: 600};
 const S = {x0: 200, x1: 1720, y: 750, h: 70, lmin: 80, lmax: 2000};
 const lX = (nm: number) => mix(S.x0, S.x1, Math.log(nm / S.lmin) / Math.log(S.lmax / S.lmin));
 const NMAX = 7;

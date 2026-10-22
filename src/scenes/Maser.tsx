@@ -54,8 +54,8 @@ export const Maser: React.FC = () => {
   const PX = 600;
   const PY = 480;
   const electronAngle = t * 1.6;
-  const ex = PX + 150 * Math.cos(electronAngle);
-  const ey = PY + 60 * Math.sin(electronAngle);
+  const ex = PX + 240 * Math.cos(electronAngle);
+  const ey = PY + 95 * Math.sin(electronAngle);
   // tingkat hiperhalus
   const L = {x0: 1140, x1: 1640, up: 400, down: 560};
   const dotY = mix(L.up, L.down, flip);
@@ -72,12 +72,12 @@ export const Maser: React.FC = () => {
         {/* ===== A: spin dan hiperhalus ===== */}
         <g opacity={A}>
           <g opacity={atom}>
-            <OrbitalCloud id="1s" x={PX} y={PY} size={260} yaw={t * 0.2} dot={2} count={900} pos={C.cyan} neg={C.cyan} opacity={0.4} />
+            <OrbitalCloud id="1s" x={PX} y={PY} size={300} yaw={t * 0.2} dot={2} count={900} pos={C.cyan} neg={C.cyan} opacity={0.4} />
             <Nucleus x={PX} y={PY} r={34} label="p⁺" />
             <Spin x={PX} y={PY - 70} len={70} angle={0} color={C.red} />
             <Electron x={ex} y={ey} r={13} />
             <Spin x={ex} y={ey - 48} len={56} angle={180 * flip} color={C.cyan} />
-            <Label x={PX} y={PY + 250} size={30} color={flip > 0.5 ? C.mint : C.gold} weight={700}>
+            <Label x={PX} y={PY + 175} size={30} color={flip > 0.5 ? C.mint : C.gold} weight={700}>
               {flip > 0.5 ? 'spin berlawanan (F = 0)' : 'spin searah (F = 1)'}
             </Label>
           </g>

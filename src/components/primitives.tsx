@@ -450,7 +450,7 @@ export const Sup: React.FC<{children: React.ReactNode; color?: string}> = ({chil
 
 /** Bagian rumus yang muncul bertahap (p: 0..1) mengikuti narasi. */
 export const Part: React.FC<{p: number; children: React.ReactNode; color?: string}> = ({p, children, color}) => (
-  <span style={{opacity: 0.12 + 0.88 * p, color, filter: p < 0.99 ? `blur(${(1 - p) * 3}px)` : undefined}}>{children}</span>
+  <span style={{opacity: p, color, filter: p < 0.99 ? `blur(${(1 - p) * 3}px)` : undefined}}>{children}</span>
 );
 
 /** Kartu rumus utama: ≥ 56 px, satu per momen. */
@@ -470,3 +470,11 @@ export const Formula: React.FC<{
       {caption ? <div style={{fontSize: 26, color: C.muted, textAlign: 'center', marginTop: 10, fontFamily: FONT.sans}}>{caption}</div> : null}
     </Card>
   );
+
+/** ν̃ (bilangan gelombang) — tilde digambar sendiri karena tanda gabungan tidak menempel di font serif. */
+export const NuTilde: React.FC<{color?: string}> = ({color}) => (
+  <span style={{position: 'relative', display: 'inline-block', fontFamily: FONT.serif, fontStyle: 'italic', color}}>
+    ν
+    <span style={{position: 'absolute', left: '0.12em', top: '-0.48em', fontSize: '0.85em', fontStyle: 'normal'}}>~</span>
+  </span>
+);

@@ -85,6 +85,6 @@ jobs:
     uses: ./.github/workflows/render-video.yml
     with:
       resolusi: '2k'
-      props: '{"showCaptions":false,"musicVolume":0.9,"voiceover":false}'
+      props: '{"showCaptions":true,"musicVolume":0.9,"voiceover":false}'
       ref: ${{ needs.voiceover.outputs.sha }}
       nama: 'tanpa-narasi'

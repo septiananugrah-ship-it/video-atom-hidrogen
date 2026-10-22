@@ -132,12 +132,20 @@ export const Selection: React.FC = () => {
           <Sub>ℓ</Sub>&nbsp;=&nbsp;0, ±1
         </Part>
       </Formula>
-      <Formula x={1860} y={215} anchor="right" size={50} p={B * ramp(t, cue(4) + 0.6, cue(4) + 1.4)} accent={C.mint}>
+      <Formula
+        x={1860}
+        y={225}
+        anchor="right"
+        size={52}
+        p={B * ramp(t, cue(4) + 0.6, cue(4) + 1.4)}
+        accent={C.mint}
+        caption={
+          <span style={{opacity: nfree, color: C.gold, fontSize: 40, fontFamily: 'Source Serif 4, serif'}}>
+            Δ<i>n</i> bebas
+          </span>
+        }
+      >
         Δ<V>ℓ</V>&nbsp;=&nbsp;±1
-        <Part p={nfree} color={C.gold}>
-          <span style={{margin: '0 20px', color: C.faint}}>·</span>Δ<V>n</V>&nbsp;
-          <span style={{fontFamily: 'Outfit, sans-serif', fontSize: '0.8em'}}>bebas</span>
-        </Part>
       </Formula>
     </AbsoluteFill>
   );

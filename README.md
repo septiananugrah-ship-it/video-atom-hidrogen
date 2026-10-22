@@ -22,7 +22,7 @@ Daftar bab bertimecode untuk YouTube: `naskah/BAB_YOUTUBE.txt` (diperbarui otoma
 2. Actions → **Buat voice-over ElevenLabs + render 2K** → Run workflow (voice ID bawaan = Bagas, model `eleven_v4`).
 3. Workflow membuat MP3 per baris, menyesuaikan timeline & musik, lalu merender **dua versi**:
    - `atom-hidrogen-dengan-narasi-2k-30fps` (narasi + musik pelan + subtitle),
-   - `atom-hidrogen-tanpa-narasi-2k-30fps` (musik saja, tanpa subtitle — untuk dubbing sendiri).
+   - `atom-hidrogen-tanpa-narasi-2k-30fps` (musik + subtitle, tanpa suara — untuk dubbing sendiri).
 
 Render ulang tanpa membuat suara: Actions → **Render Atom Hidrogen 2K 30FPS** (isi `props` dan `nama`).
 

@@ -78,10 +78,10 @@ export const Ionization: React.FC = () => {
           <g opacity={he}>
             {ladder(1010, 420, 2, 1, 'He⁺')}
             <Arrow x1={1010 + 420 * 0.62} y1={eY(En(1, 2)) - 6} x2={1010 + 420 * 0.62} y2={eY(0) + 8} color="red" width={5} />
-            <Label x={1010 + 420 * 0.62 + 18} y={(eY(En(1, 2)) + eY(0)) / 2} size={30} color={C.red} anchor="start" weight={700}>
+            <Label x={1010 + 420 * 0.62 - 18} y={(eY(En(1, 2)) + eY(0)) / 2} size={30} color={C.red} anchor="end" weight={700}>
               54,4 eV
             </Label>
-            <Label x={1010 + 420 * 0.62 + 18} y={(eY(En(1, 2)) + eY(0)) / 2 + 40} size={24} color={C.red} anchor="start">
+            <Label x={1010 + 420 * 0.62 - 18} y={(eY(En(1, 2)) + eY(0)) / 2 + 40} size={24} color={C.red} anchor="end">
               = 4 × 13,6
             </Label>
           </g>
@@ -122,10 +122,9 @@ export const Ionization: React.FC = () => {
         <Sub>n</Sub>&nbsp;=&nbsp;13,6 eV&nbsp;·&nbsp;<Frac n={<><V>Z</V><Sup>2</Sup></>} d={<><V>n</V><Sup>2</Sup></>} />
       </Formula>
       <Formula x={1380} y={330} p={kj * (1 - sc)} accent={C.gold} caption="1 eV per partikel = 96,485 kJ per mol">
-        13,6 eV&nbsp;×&nbsp;96,485&nbsp;<Frac n="kJ mol⁻¹" d="eV" />
-        &nbsp;≈&nbsp;<b style={{color: C.gold, fontFamily: 'Outfit, sans-serif'}}>1312 kJ/mol</b>
+        13,6&nbsp;×&nbsp;96,485&nbsp;≈&nbsp;<b style={{color: C.gold, fontFamily: 'Outfit, sans-serif'}}>1312 kJ/mol</b>
       </Formula>
-      <Formula x={1860} y={330} anchor="right" p={he * ramp(t, wordOf(5, 'empat'), wordOf(5, 'empat') + 0.6)} accent={C.red} caption="He⁺: Z = 2">
+      <Formula x={1860} y={330} anchor="right" p={he * ramp(t, wordOf(5, 'empat'), wordOf(5, 'empat') + 0.6) * (1 - warn)} accent={C.red} caption="He⁺: Z = 2">
         <V>Z</V>
         <Sup>2</Sup>&nbsp;=&nbsp;4
       </Formula>

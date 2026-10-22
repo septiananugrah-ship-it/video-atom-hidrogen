@@ -1,7 +1,7 @@
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
 import {BACK, EASE_IN_OUT, mix, ramp} from '../anim';
-import {Card, Formula, Frac, Glow, Label, Stage, Sub, Sup, V} from '../components/primitives';
+import {Card, Formula, Frac, Glow, Label, NuTilde, Stage, Sub, Sup, V} from '../components/primitives';
 import {wlColor} from '../components/viz';
 import {useScene} from '../SceneContext';
 import {C} from '../theme';
@@ -60,7 +60,7 @@ export const Fit: React.FC = () => {
             </Label>
           ))}
           <Label x={BOX.x - 10} y={BOX.y - BOX.h - 44} size={24} color={C.muted} anchor="start">
-            ν̃ (cm⁻¹)
+            bilangan gelombang (cm⁻¹)
           </Label>
           <Label x={X(0.5)} y={BOX.y + 64} size={26} color={C.cyan} opacity={xlab}>
             x = 1 − 1/nᵢ²
@@ -118,14 +118,14 @@ export const Fit: React.FC = () => {
           </g>
         </g>
       </Stage>
-      <Formula x={1420} y={330} p={xlab * (1 - slopeC)} accent={C.cyan} caption={<>deret Lyman (n<sub>f</sub> = 1): semua titik (x, ν̃) segaris</>}>
-        <V>ν̃</V>&nbsp;=&nbsp;<V>R</V>&nbsp;
+      <Formula x={1420} y={330} p={xlab * (1 - slopeC)} accent={C.cyan} caption={<>deret Lyman (n<sub>f</sub> = 1): semua titik (x, bilangan gelombang) segaris</>}>
+        <NuTilde />&nbsp;=&nbsp;<V>R</V>&nbsp;
         <span style={{fontSize: '1.25em'}}>(</span>1&nbsp;−&nbsp;<Frac n="1" d={<><V>n</V><Sub>i</Sub><Sup>2</Sup></>} />
         <span style={{fontSize: '1.25em'}}>)</span>&nbsp;=&nbsp;<V>R</V>
         <V color={C.cyan}>x</V>
       </Formula>
       <Formula x={1420} y={330} p={slopeC * (1 - ion)} accent={C.gold} caption="kuadrat terkecil melalui titik asal">
-        <V>R</V>&nbsp;=&nbsp;<Frac n={<>Σ <V>x</V><Sub>i</Sub><V>ν̃</V><Sub>i</Sub></>} d={<>Σ <V>x</V><Sub>i</Sub><Sup>2</Sup></>} />
+        <V>R</V>&nbsp;=&nbsp;<Frac n={<>Σ <V>x</V><Sub>i</Sub><NuTilde /><Sub>i</Sub></>} d={<>Σ <V>x</V><Sub>i</Sub><Sup>2</Sup></>} />
         &nbsp;≈&nbsp;<b style={{color: C.gold, fontFamily: 'Outfit, sans-serif', fontSize: '0.8em'}}>109 678,7 cm⁻¹</b>
       </Formula>
       <Formula x={1420} y={330} p={ion * (1 - B)} accent={C.gold} caption="≈ 1312 kJ/mol">

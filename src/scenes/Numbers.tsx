@@ -1,7 +1,7 @@
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
 import {BACK, ramp, win} from '../anim';
-import {Formula, Frac, Glow, Label, Part, Stage, Sub, V} from '../components/primitives';
+import {Formula, Frac, Glow, Label, Stage, Sub, V} from '../components/primitives';
 import {OrbitalCloud, type OrbitalId} from '../components/viz';
 import {useScene} from '../SceneContext';
 import {C, FONT} from '../theme';
@@ -97,7 +97,7 @@ export const Numbers: React.FC = () => {
         {/* ===== tabel kulit ===== */}
         <g opacity={B}>
           {[1, 2, 3, 4].map((n, i) => {
-            const y = 250 + i * 135;
+            const y = 235 + i * 122;
             let x = 330;
             return (
               <g key={n} opacity={rows[i]}>
@@ -145,15 +145,20 @@ export const Numbers: React.FC = () => {
         &nbsp;→&nbsp;2<V>n</V>
         <sup style={{fontSize: '0.62em'}}>2</sup>&nbsp;keadaan per kulit
       </Formula>
-      <Formula x={960} y={790} p={B * ex1} accent={C.gold}>
+      <Formula
+        x={960}
+        y={780}
+        p={B * ex1}
+        accent={C.gold}
+        size={50}
+        caption={
+          <span style={{opacity: ex2, fontSize: 44, color: C.ink, fontFamily: 'Source Serif 4, serif'}}>
+            (2, 2, 0) <span style={{color: C.red, fontFamily: 'Outfit, sans-serif'}}>✗ ℓ harus &lt; n</span>
+          </span>
+        }
+      >
         (<V>n</V>, <V>ℓ</V>, <V>m</V>
         <Sub>ℓ</Sub>) = (3, 2, −2)&nbsp;<span style={{color: C.mint, fontFamily: 'Outfit, sans-serif'}}>✓ 3d</span>
-        <Part p={ex2}>
-          <span style={{margin: '0 30px', color: C.faint}}>|</span>(2, 2, 0)&nbsp;
-          <span style={{color: C.red, fontFamily: 'Outfit, sans-serif'}}>
-            ✗ <V>ℓ</V> &lt; <V>n</V>
-          </span>
-        </Part>
       </Formula>
     </AbsoluteFill>
   );
