@@ -76,6 +76,10 @@ export const Recap: React.FC = () => {
     <AbsoluteFill>
       <Stage>
         <g opacity={intro * (1 - nodesOut)}>
+          <DrawPath d={PATH} p={ramp(t, 0.1, 2.4)} stroke={C.faint} width={2} opacity={0.6} len={3000} />
+          {NODES.map((n, i) => (
+            <circle key={`g${i}`} cx={n.x} cy={n.y} r={92} fill="none" stroke={n.color} strokeOpacity={0.25 * ramp(t, 0.3 + i * 0.25, 0.9 + i * 0.25)} strokeWidth={2} strokeDasharray="6 8" />
+          ))}
           <DrawPath d={PATH} p={Math.min(1, pathP)} stroke={C.gold} width={3} opacity={0.6} len={3000} />
           {NODES.map((n, i) => (
             <g key={i} opacity={lit[i]} transform={`translate(${n.x} ${n.y}) scale(${0.7 + 0.3 * lit[i]}) translate(${-n.x} ${-n.y})`}>

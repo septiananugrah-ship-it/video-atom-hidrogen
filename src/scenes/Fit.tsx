@@ -1,7 +1,7 @@
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
 import {BACK, EASE_IN_OUT, mix, ramp} from '../anim';
-import {Card, Glow, Label, Stage, V} from '../components/primitives';
+import {Card, Formula, Frac, Glow, Label, Stage, Sub, Sup, V} from '../components/primitives';
 import {wlColor} from '../components/viz';
 import {useScene} from '../SceneContext';
 import {C} from '../theme';
@@ -27,17 +27,21 @@ const D_A = H_A - 0.179;
 
 export const Fit: React.FC = () => {
   const {t, cue} = useScene();
-  const axes = ramp(t, cue(0) - 0.3, cue(0) + 0.8);
+  const axes = ramp(t, 0.1, 1.2);
   const pts = DATA.map((_, i) => ramp(t, cue(1) + i * 0.25, cue(1) + i * 0.25 + 0.5, BACK));
   const xlab = ramp(t, cue(2), cue(2) + 0.6);
   const line = ramp(t, cue(3), cue(3) + 1.4, EASE_IN_OUT);
-  const slope = ramp(t, cue(4), cue(4) + 0.7, BACK);
-  const ion = ramp(t, cue(5), cue(5) + 0.7, BACK);
+  const slopeC = ramp(t, cue(4), cue(4) + 0.7);
+  const ion = ramp(t, cue(5), cue(5) + 0.7);
   const B = ramp(t, cue(6) - 0.3, cue(6) + 0.8);
-  const muC = ramp(t, cue(7), cue(7) + 0.7, BACK);
+  const muC = ramp(t, cue(7), cue(7) + 0.7);
   const shift = ramp(t, cue(8), cue(8) + 1.6, EASE_IN_OUT);
   const urey = ramp(t, cue(9), cue(9) + 0.7, BACK);
-  const fade = 1 - 0.55 * B;
+  const fade = 1 - 0.65 * B;
+  // garis 'mencari' kemiringan terbaik (osilasi teredam menuju R)
+  const fitp = ramp(t, cue(3), cue(3) + 2.8);
+  const slope = R_FIT * (1 + 0.32 * Math.exp(-3.2 * fitp) * Math.cos(fitp * Math.PI * 3.5) * (fitp < 1 ? 1 : 0));
+  const sse = DATA.reduce((acc, [, x, v]) => acc + (v - slope * x) ** 2, 0);
 
   return (
     <AbsoluteFill>
@@ -61,7 +65,17 @@ export const Fit: React.FC = () => {
           <Label x={X(0.5)} y={BOX.y + 64} size={26} color={C.cyan} opacity={xlab}>
             x = 1 − 1/nᵢ²
           </Label>
-          <line x1={X(0)} y1={Y(0)} x2={mix(X(0), X(1.02), line)} y2={mix(Y(0), Y(R_FIT * 1.02), line)} stroke={C.gold} strokeWidth={4} filter="url(#glow)" />
+          <line x1={X(0)} y1={Y(0)} x2={mix(X(0), X(1.02), line)} y2={mix(Y(0), Y(slope * 1.02), line)} stroke={C.gold} strokeWidth={4} filter="url(#glow)" />
+          {/* sisa (residual) tiap titik */}
+          {DATA.map(([n, x, v]) => (
+            <line key={`r${n}`} x1={X(x)} y1={Y(v)} x2={X(x)} y2={Y(slope * x)} stroke={C.red} strokeWidth={3} opacity={line * (1 - ramp(t, cue(3) + 2.6, cue(3) + 3.2))} />
+          ))}
+          <g opacity={line * (1 - ramp(t, cue(4), cue(4) + 0.6))}>
+            <Label x={X(0.05)} y={Y(108000)} size={24} color={C.red} anchor="start" weight={600}>
+              jumlah kuadrat sisa
+            </Label>
+            <rect x={X(0.05)} y={Y(104000)} width={Math.min(330, 330 * Math.sqrt(sse / 6.0e8))} height={16} rx={8} fill={C.red} opacity={0.8} />
+          </g>
           {DATA.map(([n, x, v], i) => (
             <g key={n} opacity={pts[i]}>
               <circle cx={X(x)} cy={Y(v)} r={11} fill={C.cyan} stroke="#fff" strokeWidth={2} />
@@ -73,7 +87,7 @@ export const Fit: React.FC = () => {
             </g>
           ))}
           <Glow x={X(0)} y={Y(0)} r={36} color="gold" opacity={line} />
-          <Label x={X(0.32)} y={Y(R_FIT * 0.32) - 40} size={26} color={C.gold} weight={700} opacity={slope}>
+          <Label x={X(0.32)} y={Y(R_FIT * 0.32) - 40} size={28} color={C.gold} weight={700} opacity={slopeC}>
             kemiringan = R
           </Label>
         </g>
@@ -104,28 +118,30 @@ export const Fit: React.FC = () => {
           </g>
         </g>
       </Stage>
-      <Card x={1420} y={300} opacity={slope * (1 - B)} accent={C.gold} style={{fontSize: 34}}>
-        <V>R</V> ≈ <b style={{color: C.gold}}>109 678,7 cm⁻¹</b>
-        <div style={{fontSize: 22, color: C.muted}}>penyesuaian kuadrat terkecil melalui titik asal</div>
-      </Card>
-      <Card x={1420} y={460} opacity={ion * (1 - B)} accent={C.gold} style={{fontSize: 34}}>
-        <V>I</V> = <V>hcR</V> ≈ <b style={{color: C.gold}}>13,598 eV</b>
-        <div style={{fontSize: 24, color: C.muted}}>≈ 1312 kJ/mol</div>
-      </Card>
-      <Card x={1410} y={250} opacity={B} accent={C.violet} style={{fontSize: 30}}>
-        <div>
-          deuterium: <V>R</V>
-          <sub>D</sub> ≈ 109 710,8 cm⁻¹ → <V>I</V>
-          <sub>D</sub> ≈ 13,602 eV
-        </div>
-      </Card>
-      <Card x={1410} y={380} opacity={B * muC} accent={C.violet} style={{fontSize: 32}}>
+      <Formula x={1420} y={330} p={xlab * (1 - slopeC)} accent={C.cyan} caption={<>deret Lyman (n<sub>f</sub> = 1): semua titik (x, ν̃) segaris</>}>
+        <V>ν̃</V>&nbsp;=&nbsp;<V>R</V>&nbsp;
+        <span style={{fontSize: '1.25em'}}>(</span>1&nbsp;−&nbsp;<Frac n="1" d={<><V>n</V><Sub>i</Sub><Sup>2</Sup></>} />
+        <span style={{fontSize: '1.25em'}}>)</span>&nbsp;=&nbsp;<V>R</V>
+        <V color={C.cyan}>x</V>
+      </Formula>
+      <Formula x={1420} y={330} p={slopeC * (1 - ion)} accent={C.gold} caption="kuadrat terkecil melalui titik asal">
+        <V>R</V>&nbsp;=&nbsp;<Frac n={<>Σ <V>x</V><Sub>i</Sub><V>ν̃</V><Sub>i</Sub></>} d={<>Σ <V>x</V><Sub>i</Sub><Sup>2</Sup></>} />
+        &nbsp;≈&nbsp;<b style={{color: C.gold, fontFamily: 'Outfit, sans-serif', fontSize: '0.8em'}}>109 678,7 cm⁻¹</b>
+      </Formula>
+      <Formula x={1420} y={330} p={ion * (1 - B)} accent={C.gold} caption="≈ 1312 kJ/mol">
+        <V>I</V>&nbsp;=&nbsp;<V>h</V>
+        <V>c</V>
+        <V>R</V>&nbsp;≈&nbsp;<b style={{color: C.gold, fontFamily: 'Outfit, sans-serif'}}>13,598 eV</b>
+      </Formula>
+      <Formula x={1420} y={330} p={B * (1 - muC)} accent={C.violet} size={50} caption="garis Balmer deuterium, cara yang sama">
         <V>R</V>
-        <sub style={{fontSize: 20}}>μ</sub> = <V>R</V>
-        <sub style={{fontSize: 20}}>∞</sub> / (1 + <V>m</V>
-        <sub style={{fontSize: 20}}>e</sub>/<V>m</V>
-        <sub style={{fontSize: 20}}>N</sub>)
-      </Card>
+        <Sub>D</Sub>&nbsp;≈&nbsp;109 710,8 cm⁻¹&nbsp;→&nbsp;<V>I</V>
+        <Sub>D</Sub>&nbsp;≈&nbsp;13,602 eV
+      </Formula>
+      <Formula x={1420} y={330} p={B * muC} accent={C.violet} caption="inti lebih berat → μ lebih besar → R sedikit lebih besar">
+        <V>R</V>
+        <Sub>μ</Sub>&nbsp;=&nbsp;<Frac n={<><V>R</V><Sub>∞</Sub></>} d={<>1 + <Frac n={<><V>m</V><Sub>e</Sub></>} d={<><V>m</V><Sub>N</Sub></>} size={0.8} /></>} />
+      </Formula>
       <Card x={590} y={300} opacity={urey} accent={C.gold} style={{fontSize: 26}}>
         <div style={{color: C.gold, fontWeight: 700}}>Urey, Brickwedde &amp; Murphy (1932)</div>
         <div>deuterium ditemukan dari garis Balmer yang bergeser</div>

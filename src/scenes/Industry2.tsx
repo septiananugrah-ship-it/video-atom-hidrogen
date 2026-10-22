@@ -23,7 +23,7 @@ const METALS = [
 export const Industry2: React.FC = () => {
   const {t, cue, wordOf} = useScene();
   const A = win(t, cue(0) - 0.4, cue(2) - 0.4, 0.8, 0.7);
-  const rows = BARCODE.map((_, i) => ramp(t, cue(0) + 0.6 + i * 0.6, cue(0) + 1.4 + i * 0.6));
+  const rows = BARCODE.map((_, i) => ramp(t, 0.2 + i * 0.5, 1.0 + i * 0.5));
   const tags = ramp(t, cue(1), cue(1) + 0.7, BACK);
   const B = win(t, cue(2) - 0.3, cue(5) - 0.4, 0.8, 0.7);
   const torch = ramp(t, cue(2), cue(2) + 1);
@@ -104,7 +104,7 @@ export const Industry2: React.FC = () => {
             <Label x={1310} y={820} size={22} color={C.muted}>
               kadar unsur
             </Label>
-            <Label x={1100} y={420} size={22} color={C.muted} anchor="end">
+            <Label x={1130} y={400} size={24} color={C.muted} anchor="start">
               intensitas
             </Label>
           </g>

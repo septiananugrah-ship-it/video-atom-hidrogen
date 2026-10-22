@@ -1,7 +1,7 @@
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
 import {BACK, EASE_IN_OUT, mix, pathOf, ramp, win} from '../anim';
-import {Arrow, Card, DrawPath, Glow, Label, Stage, V} from '../components/primitives';
+import {Arrow, DrawPath, Formula, Frac, Glow, Label, Stage, Sub, Sup, V} from '../components/primitives';
 import {Electron, Nucleus, OrbitalCloud, plotPath} from '../components/viz';
 import {useScene} from '../SceneContext';
 import {C} from '../theme';
@@ -14,7 +14,7 @@ export const Separation: React.FC = () => {
   const {t, cue, wordOf} = useScene();
   // Fase A: simetri bola (baris 0)
   const A = win(t, cue(0) - 0.6, cue(1) - 0.2, 0.8, 0.6);
-  const ring = ramp(t, cue(0) + 0.6, cue(0) + 2);
+  const ring = ramp(t, 0.1, 1.6);
   // Fase B: koordinat bola (baris 1–4)
   const B = win(t, cue(1) - 0.3, cue(5) - 0.4, 0.8, 0.7);
   const axes = ramp(t, cue(1), cue(1) + 1, EASE_IN_OUT);
@@ -128,27 +128,28 @@ export const Separation: React.FC = () => {
         </g>
       </Stage>
 
-      <Card x={1430} y={330} opacity={B * prod} scale={0.85 + 0.15 * prod} accent={C.gold}>
-        <div style={{fontSize: 56}}>
-          <V>ψ</V>(<V>r</V>, <V>θ</V>, <V>φ</V>) = <span style={{color: C.cyan, opacity: 0.4 + 0.6 * rPart}}><V>R</V>(<V>r</V>)</span> ·{' '}
-          <span style={{color: C.violet, opacity: 0.4 + 0.6 * yPart}}><V>Y</V>(<V>θ</V>, <V>φ</V>)</span>
-        </div>
-      </Card>
-      <Card x={1430} y={470} opacity={B * mod5} accent={C.violet} style={{fontSize: 30}}>
-        <span style={{color: C.violet, fontWeight: 600}}>Modul 5:</span> Λ²<V>Y</V> = −<V>ℓ</V>(<V>ℓ</V>+1)<V>Y</V>
-      </Card>
-      <Card x={520} y={430} opacity={Cph} scale={0.9 + 0.1 * Cph} accent={C.gold}>
-        <div style={{fontSize: 40}}>
-          −<span style={{fontSize: 34}}>ħ²</span>/2<V>μ</V> · <V>u</V>″ + <V color={C.red}>V</V>
-          <sub style={{fontSize: 22, color: C.red}}>eff</sub>(<V>r</V>) <V>u</V> = <V>E u</V>
-        </div>
-        <div style={{fontSize: 28, color: C.muted, marginTop: 8, textAlign: 'center'}}>
-          dengan <V color={C.gold}>u</V> = <V>r</V> · <V color={C.cyan}>R</V>(<V>r</V>)
-        </div>
-      </Card>
-      <Card x={520} y={640} opacity={ramp(t, cue(6), cue(6) + 0.7, BACK)} accent={C.mint} style={{fontSize: 28}}>
-        syarat batas: <V>u</V>(0) = 0 dan <V>u</V>(∞) = 0
-      </Card>
+      <Formula x={1400} y={300} p={B * prod * (1 - mod5)} accent={C.gold}>
+        <V>ψ</V>(<V>r</V>, <V>θ</V>, <V>φ</V>)&nbsp;=&nbsp;
+        <span style={{color: C.cyan, opacity: 0.35 + 0.65 * rPart}}>
+          <V>R</V>(<V>r</V>)
+        </span>
+        &nbsp;·&nbsp;
+        <span style={{color: C.violet, opacity: 0.35 + 0.65 * yPart}}>
+          <V>Y</V>(<V>θ</V>, <V>φ</V>)
+        </span>
+      </Formula>
+      <Formula x={1400} y={300} p={B * mod5} accent={C.violet} caption="harmonik sferis — sudah diselesaikan di Modul 5">
+        Λ<Sup>2</Sup>
+        <V color={C.violet}>Y</V>&nbsp;=&nbsp;−<V>ℓ</V>(<V>ℓ</V> + 1)&nbsp;<V color={C.violet}>Y</V>
+      </Formula>
+      <Formula x={520} y={420} p={Cph} accent={C.gold} caption={<>dengan <i style={{fontFamily: 'Source Serif 4, serif', color: C.gold}}>u</i> = <i style={{fontFamily: 'Source Serif 4, serif'}}>r</i> · <i style={{fontFamily: 'Source Serif 4, serif', color: C.cyan}}>R</i>(<i style={{fontFamily: 'Source Serif 4, serif'}}>r</i>)</>}>
+        −<Frac n={<><V>ħ</V><Sup>2</Sup></>} d={<>2<V>μ</V></>} />
+        <Frac n={<>d<Sup>2</Sup><V color={C.gold}>u</V></>} d={<>d<V>r</V><Sup>2</Sup></>} />
+        &nbsp;+&nbsp;<V color={C.red}>V</V>
+        <Sub color={C.red}>eff</Sub>
+        <V color={C.gold}>u</V>&nbsp;=&nbsp;<V>E</V>
+        <V color={C.gold}>u</V>
+      </Formula>
     </AbsoluteFill>
   );
 };

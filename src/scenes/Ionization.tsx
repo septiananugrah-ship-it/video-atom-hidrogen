@@ -1,10 +1,10 @@
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
 import {BACK, EASE_IN_OUT, mix, ramp} from '../anim';
-import {Arrow, Card, Glow, Label, Stage, V} from '../components/primitives';
+import {Arrow, Card, Formula, Frac, Glow, Label, Stage, Sub, Sup, V} from '../components/primitives';
 import {En, Electron} from '../components/viz';
 import {useScene} from '../SceneContext';
-import {C, FONT} from '../theme';
+import {C} from '../theme';
 
 const TOP = 240;
 const BOT = 820;
@@ -116,26 +116,28 @@ export const Ionization: React.FC = () => {
         </g>
         <Glow x={hx + hw * 0.62} y={eY(0)} r={80} color="gold" opacity={0.5 * ramp(t, cue(1) + 2.2, cue(1) + 2.8) * (1 - n2)} />
       </Stage>
-      <Card x={1450} y={330} opacity={iLab * (1 - sc)} accent={C.gold}>
-        <div style={{fontSize: 44}}>
-          <V>I</V>
-          <sub style={{fontSize: 24}}>n</sub> = −<V>E</V>
-          <sub style={{fontSize: 24}}>n</sub> = 13,6 eV · <V>Z</V>² / <V>n</V>²
-        </div>
-      </Card>
-      <Card x={1450} y={520} opacity={kj * (1 - sc)} accent={C.gold} style={{fontSize: 30}}>
-        13,6 eV × 96,485 kJ mol⁻¹ eV⁻¹ ≈ <b style={{color: C.gold}}>1312 kJ/mol</b>
-      </Card>
-      <Card x={1700} y={360} opacity={he * ramp(t, wordOf(5, 'empat'), wordOf(5, 'empat') + 0.6, BACK)} accent={C.red} anchor="right" style={{fontSize: 32}}>
-        <V>Z</V> = 2 → <V>Z</V>² = 4
-      </Card>
-      <Card x={1700} y={520} opacity={warn} accent={C.red} anchor="right" style={{fontSize: 26}}>
+      <Formula x={1380} y={330} p={ramp(t, cue(1) + 0.6, cue(1) + 1.4) * (1 - kj)} accent={C.gold} caption="energi untuk membawa elektron dari tingkat n ke E = 0">
+        <V>I</V>
+        <Sub>n</Sub>&nbsp;=&nbsp;−<V>E</V>
+        <Sub>n</Sub>&nbsp;=&nbsp;13,6 eV&nbsp;·&nbsp;<Frac n={<><V>Z</V><Sup>2</Sup></>} d={<><V>n</V><Sup>2</Sup></>} />
+      </Formula>
+      <Formula x={1380} y={330} p={kj * (1 - sc)} accent={C.gold} caption="1 eV per partikel = 96,485 kJ per mol">
+        13,6 eV&nbsp;×&nbsp;96,485&nbsp;<Frac n="kJ mol⁻¹" d="eV" />
+        &nbsp;≈&nbsp;<b style={{color: C.gold, fontFamily: 'Outfit, sans-serif'}}>1312 kJ/mol</b>
+      </Formula>
+      <Formula x={1860} y={330} anchor="right" p={he * ramp(t, wordOf(5, 'empat'), wordOf(5, 'empat') + 0.6)} accent={C.red} caption="He⁺: Z = 2">
+        <V>Z</V>
+        <Sup>2</Sup>&nbsp;=&nbsp;4
+      </Formula>
+      <Card x={1860} y={600} opacity={warn} accent={C.red} anchor="right" style={{fontSize: 30}}>
         <div style={{color: C.red, fontWeight: 700}}>⚠ bukan He netral</div>
         <div>He netral (2 elektron): I₁ ≈ 24,6 eV</div>
+        <div style={{fontSize: 22, color: C.muted}}>NIST Atomic Spectra Database</div>
       </Card>
-      <div style={{position: 'absolute', left: 1020, top: 250, fontFamily: FONT.sans, fontSize: 30, color: C.ink, fontWeight: 600, opacity: virial}}>
-        Teorema virial (Coulomb): ⟨T⟩ = −E, ⟨V⟩ = 2E
-      </div>
+      <Formula x={1380} y={235} p={virial} accent={C.cyan} caption="teorema virial untuk potensial Coulomb">
+        ⟨<V>T</V>⟩&nbsp;=&nbsp;−<V>E</V>
+        <span style={{margin: '0 34px', color: C.faint}}>·</span>⟨<V>V</V>⟩&nbsp;=&nbsp;2<V>E</V>
+      </Formula>
     </AbsoluteFill>
   );
 };

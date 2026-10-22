@@ -559,37 +559,73 @@ Dan pelebaran garis Balmer dipakai untuk mengukur kerapatan elektron di dalam pl
 Dari satu proton dan satu elektron, lahir alat ukur yang menjaga mutu produk di berbagai sektor.
 
 141
-00:16:54,000 --> 00:16:57,000
-Mari kita rangkai seluruh perjalanannya.
+00:16:54,000 --> 00:17:00,638
+Ada satu lagi penerapan atom hidrogen yang bekerja di atas kepala kita setiap hari.
 
 142
-00:16:57,000 --> 00:17:04,760
-Atom hidrogen adalah satu elektron yang terikat pada inti oleh gaya Coulomb, dengan massa tereduksi mu.
+00:17:00,638 --> 00:17:09,205
+Ingat struktur hiperhalus: pada keadaan dasar satu s, spin elektron dan spin proton bisa searah atau berlawanan arah.
 
 143
-00:17:04,760 --> 00:17:09,960
-Fungsi gelombangnya terpisah menjadi bagian radial dan harmonik sferis.
+00:17:09,205 --> 00:17:13,290
+Keadaan yang searah sedikit lebih tinggi energinya.
 
 144
-00:17:09,960 --> 00:17:17,720
-Syarat batas melahirkan bilangan kuantum, dengan energi minus tiga belas koma enam per n kuadrat elektronvolt.
+00:17:13,290 --> 00:17:24,201
+Ketika spin elektron membalik, atom memancarkan gelombang mikro sekitar satu koma empat dua gigahertz, dengan panjang gelombang dua puluh satu sentimeter.
 
 145
-00:17:17,720 --> 00:17:24,600
-Simpul, distribusi radial, dan bentuk orbital menggambarkan di mana elektron mungkin berada.
+00:17:24,201 --> 00:17:31,359
+Frekuensi ini sangat tajam dan stabil, sehingga dipakai sebagai detak jam atom: maser hidrogen.
 
 146
-00:17:24,600 --> 00:17:34,120
-Lompatan antartingkat memancarkan foton sesuai rumus Rydberg, dibatasi aturan seleksi delta l sama dengan plus atau minus satu.
+00:17:31,359 --> 00:17:38,174
+Satelit navigasi Galileo milik Eropa membawa maser hidrogen pasif sebagai jam utamanya.
 
 147
-00:17:34,120 --> 00:17:40,360
-Dan garis-garis itu menjadi penggaris cahaya bagi laboratorium dan industri.
+00:17:38,174 --> 00:17:45,578
+Menurut badan antariksa Eropa, jam ini hanya meleset sekitar satu detik dalam tiga juta tahun.
 
 148
-00:17:40,360 --> 00:17:45,140
-Jadi, lain kali kamu melihat cahaya merah muda dari tabung hidrogen,
+00:17:45,578 --> 00:17:58,653
+Ketelitian itu penting, karena cahaya menempuh sekitar tiga puluh sentimeter dalam satu nanodetik, sehingga kesalahan waktu sekecil apa pun langsung menjadi kesalahan posisi.
 
 149
-00:17:45,140 --> 00:17:54,180
+00:17:58,653 --> 00:18:05,114
+Jadi, spin satu elektron di atom hidrogen ikut menentukan ketepatan peta di ponselmu.
+
+150
+00:18:07,700 --> 00:18:10,700
+Mari kita rangkai seluruh perjalanannya.
+
+151
+00:18:10,700 --> 00:18:18,460
+Atom hidrogen adalah satu elektron yang terikat pada inti oleh gaya Coulomb, dengan massa tereduksi mu.
+
+152
+00:18:18,460 --> 00:18:23,660
+Fungsi gelombangnya terpisah menjadi bagian radial dan harmonik sferis.
+
+153
+00:18:23,660 --> 00:18:31,420
+Syarat batas melahirkan bilangan kuantum, dengan energi minus tiga belas koma enam per n kuadrat elektronvolt.
+
+154
+00:18:31,420 --> 00:18:38,300
+Simpul, distribusi radial, dan bentuk orbital menggambarkan di mana elektron mungkin berada.
+
+155
+00:18:38,300 --> 00:18:47,820
+Lompatan antartingkat memancarkan foton sesuai rumus Rydberg, dibatasi aturan seleksi delta l sama dengan plus atau minus satu.
+
+156
+00:18:47,820 --> 00:18:54,060
+Dan garis-garis itu menjadi penggaris cahaya bagi laboratorium dan industri.
+
+157
+00:18:54,060 --> 00:18:58,840
+Jadi, lain kali kamu melihat cahaya merah muda dari tabung hidrogen,
+
+158
+00:18:58,840 --> 00:19:07,880
 ingatlah bahwa setiap warnanya adalah jejak satu elektron yang berpindah tangga di dalam atom paling sederhana di alam semesta.

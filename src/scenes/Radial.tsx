@@ -1,7 +1,7 @@
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
 import {BACK, EASE_IN_OUT, ramp} from '../anim';
-import {Card, DrawPath, Glow, Label, Stage, V} from '../components/primitives';
+import {Card, DrawPath, Formula, Frac, Glow, Label, Stage, Sub, Sup, V} from '../components/primitives';
 import {Rnl, plotPath} from '../components/viz';
 import {useScene} from '../SceneContext';
 import {C} from '../theme';
@@ -123,23 +123,29 @@ export const Radial: React.FC = () => {
           </Label>
         </g>
       </Stage>
-      <Card x={1700} y={170} opacity={parts * (1 - rule)} accent={C.gold} anchor="right" style={{fontSize: 34}}>
+      <Formula x={880} y={205} p={parts * (1 - ramp(t, cue(2), cue(2) + 0.6))} accent={C.gold} caption="perilaku dekat inti · peluruhan · simpul">
         <V>R</V>
-        <sub style={{fontSize: 20}}>nℓ</sub> ∝ <span style={{color: C.mint}}><V>ρ</V><sup>ℓ</sup></span> ·{' '}
-        <span style={{color: C.cyan}}><V>e</V><sup>−ρ/2</sup></span> ·{' '}
-        <span style={{color: C.violet}}><V>L</V>(<V>ρ</V>)</span>
-      </Card>
-      <Card x={1700} y={170} opacity={rule} accent={C.violet} anchor="right" style={{fontSize: 38}}>
-        simpul radial = <V color={C.violet}>n</V> − <V>ℓ</V> − 1
-      </Card>
-      <Card x={1700} y={600} opacity={ramp(t, cue(2) + 0.4, cue(2) + 1.2, BACK) * (1 - phase)} accent={C.gold} anchor="right" style={{fontSize: 32}}>
+        <Sub>nℓ</Sub>&nbsp;∝&nbsp;<span style={{color: C.mint}}><V>ρ</V><Sup>ℓ</Sup></span>&nbsp;·&nbsp;
+        <span style={{color: C.cyan}}>
+          <V>e</V>
+          <Sup>
+            −<Frac n={<V>ρ</V>} d="2" size={0.9} />
+          </Sup>
+        </span>
+        &nbsp;·&nbsp;<span style={{color: C.violet}}><V>L</V>(<V>ρ</V>)</span>
+      </Formula>
+      <Formula x={880} y={205} p={ramp(t, cue(2) + 0.2, cue(2) + 1) * (1 - rule)} accent={C.gold} caption="a ≈ a₀ = 52,9 pm (jari-jari Bohr)">
         <V>R</V>
-        <sub style={{fontSize: 20}}>1s</sub> = 2<V>a</V>
-        <sup>−3/2</sup>
+        <Sub>1s</Sub>&nbsp;=&nbsp;<Frac n="2" d={<><V>a</V><Sup><Frac n="3" d="2" size={0.9} /></Sup></>} />
         <V>e</V>
-        <sup>−r/a</sup>
-      </Card>
-      <Card x={1700} y={640} opacity={phase} accent={C.cyan} anchor="right" style={{fontSize: 26}}>
+        <Sup>
+          −<Frac n={<V>r</V>} d={<V>a</V>} size={0.9} />
+        </Sup>
+      </Formula>
+      <Formula x={880} y={205} p={rule} accent={C.violet}>
+        <span style={{fontFamily: 'Outfit, sans-serif', fontSize: '0.8em'}}>simpul radial</span>&nbsp;=&nbsp;<V color={C.violet}>n</V>&nbsp;−&nbsp;<V>ℓ</V>&nbsp;−&nbsp;1
+      </Formula>
+      <Card x={1860} y={730} opacity={phase} accent={C.cyan} anchor="right" style={{fontSize: 30}}>
         <div>tanda − = fase gelombang,</div>
         <div style={{color: C.cyan}}>bukan peluang negatif</div>
       </Card>

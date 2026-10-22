@@ -1,8 +1,8 @@
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
 import {BACK, EASE_IN_OUT, ramp, win} from '../anim';
-import {Card, Label, Stage} from '../components/primitives';
-import {Nucleus, OrbitalCloud, type OrbitalId} from '../components/viz';
+import {Card, Glow, Label, Stage} from '../components/primitives';
+import {Electron, Nucleus, OrbitalCloud, orbitalBox, orbitalPoints, projectPoint, type OrbitalId} from '../components/viz';
 import {useScene} from '../SceneContext';
 import {C, FONT} from '../theme';
 
@@ -25,6 +25,10 @@ const Name: React.FC<{x: number; y: number; n: string; sub?: string; color?: str
   </text>
 );
 
+// skala yang sama untuk 1s dan 2s: 28 px per jari-jari Bohr
+const PX_A = 28;
+const N_EXPO = 1800;
+
 export const Orbitals: React.FC = () => {
   const {t, cue, wordOf} = useScene();
   const yaw = t * 0.35;
@@ -45,7 +49,7 @@ export const Orbitals: React.FC = () => {
   const z2 = ramp(t, wordOf(6, 'cincin'), wordOf(6, 'cincin') + 0.6);
   // Fase D: bukan lintasan (baris 7)
   const Dph = ramp(t, cue(7) - 0.3, cue(7) + 0.8);
-  const sweep = ramp(t, cue(7) + 1, cue(7) + 5, EASE_IN_OUT);
+  const sweep = ramp(t, cue(7) + 1.6, cue(7) + 7.5, (x) => x * x);
   // pz: tunggal (besar di tengah) → menjadi trio
   const pzX = 960 + (1440 - 960) * trio;
   const pzSize = 330 - 130 * trio;
@@ -67,10 +71,13 @@ export const Orbitals: React.FC = () => {
               ×
             </text>
           </g>
-          <OrbitalCloud id="1s" x={640} y={500} size={250} yaw={yaw} p={s1} count={1500} />
+          <OrbitalCloud id="1s" x={640} y={500} size={orbitalBox('1s') * PX_A} yaw={yaw} p={s1} count={1500} dot={2.2} />
           <Nucleus x={640} y={500} r={8} opacity={s1} />
           <Name x={640} y={800} n="1s" color={C.gold} opacity={s1} size={44} />
-          <OrbitalCloud id="2s" x={1280} y={500} size={300} yaw={0} pitch={0} p={s2} count={2600} slab={0.05} dot={2.2} />
+          <Label x={960} y={160} size={24} color={C.muted} opacity={s2}>
+            skala sama: ⟨r⟩₁ₛ = 1,5a · ⟨r⟩₂ₛ = 6a
+          </Label>
+          <OrbitalCloud id="2s" x={1280} y={500} size={orbitalBox('2s') * PX_A} yaw={0} pitch={0} p={s2} count={2600} slab={0.05} dot={2.2} />
           <Nucleus x={1280} y={500} r={8} opacity={s2} />
           <Name x={1280} y={800} n="2s" color={C.gold} opacity={s2} size={44} />
           <Label x={1280} y={850} size={22} color={C.muted} opacity={s2}>
@@ -119,21 +126,51 @@ export const Orbitals: React.FC = () => {
             );
           })}
         </g>
-        {/* ===== bukan lintasan ===== */}
+        {/* ===== bukan lintasan: eksposur panjang ===== */}
         <g opacity={Dph}>
-          <OrbitalCloud id="2pz" x={960} y={500} size={300} yaw={yaw} pitch={0.32} count={1800} p={sweep} />
-          <Nucleus x={960} y={500} r={8} />
-          <ellipse cx={960} cy={500} rx={260} ry={90} fill="none" stroke={C.red} strokeWidth={4} strokeDasharray="12 10" opacity={1 - sweep} />
-          <line x1={700} y1={410} x2={1220} y2={590} stroke={C.red} strokeWidth={8} opacity={ramp(t, cue(7) + 0.4, cue(7) + 0.8) * (1 - sweep)} />
+          {(() => {
+            const orbit = 1 - ramp(t, cue(7) + 1.2, cue(7) + 2.2);
+            const a0 = t * 2.4;
+            const ex = 960 + 260 * Math.cos(a0);
+            const ey = 500 + 90 * Math.sin(a0);
+            // setiap "pengukuran" menemukan elektron di satu titik acak menurut |ψ|²
+            const k = Math.floor(N_EXPO * sweep);
+            const pts = orbitalPoints('2pz', N_EXPO);
+            const now = pts[Math.min(N_EXPO - 1, k)];
+            const [nx, ny] = projectPoint(now, 960, 500, 300, yaw, 0.32);
+            return (
+              <g>
+                <g opacity={orbit}>
+                  <ellipse cx={960} cy={500} rx={260} ry={90} fill="none" stroke={C.red} strokeWidth={4} strokeDasharray="12 10" />
+                  <Electron x={ex} y={ey} r={11} />
+                  <line x1={700} y1={410} x2={1220} y2={590} stroke={C.red} strokeWidth={8} opacity={ramp(t, cue(7) + 0.4, cue(7) + 0.8)} />
+                  <Label x={960} y={650} size={28} color={C.red} weight={600}>
+                    lintasan melingkar ✗
+                  </Label>
+                </g>
+                <OrbitalCloud id="2pz" x={960} y={500} size={300} yaw={yaw} pitch={0.32} count={N_EXPO} p={sweep} />
+                <Nucleus x={960} y={500} r={8} />
+                {sweep > 0 && sweep < 1 ? (
+                  <g>
+                    <Glow x={nx} y={ny} r={46} color="white" opacity={0.9} />
+                    <circle cx={nx} cy={ny} r={7} fill="#fff" />
+                  </g>
+                ) : null}
+                <Label x={1400} y={800} size={26} color={C.muted} opacity={ramp(t, cue(7) + 2, cue(7) + 3)} anchor="start">
+                  {`${k.toLocaleString('id-ID')} pengukuran posisi`}
+                </Label>
+              </g>
+            );
+          })()}
         </g>
       </Stage>
-      <Card x={960} y={200} opacity={Dph} accent={C.gold} style={{fontSize: 32}}>
+      <Card x={960} y={200} opacity={Dph} accent={C.gold} style={{fontSize: 36}}>
         orbital = fungsi gelombang, <span style={{color: C.red}}>bukan lintasan</span>
       </Card>
-      <Card x={960} y={210} opacity={Cph * ramp(t, cue(5) + 0.2, cue(5) + 1, BACK)} accent={C.violet} style={{fontSize: 28}}>
+      <Card x={960} y={210} opacity={Cph * ramp(t, cue(5) + 0.2, cue(5) + 1, BACK)} accent={C.violet} style={{fontSize: 34}}>
         ℓ = 2 · 5 orientasi · 2 permukaan simpul sudut
       </Card>
-      <Card x={960} y={210} opacity={B * pz * (1 - trio)} accent={C.cyan} style={{fontSize: 28}}>
+      <Card x={960} y={210} opacity={B * pz * (1 - trio)} accent={C.cyan} style={{fontSize: 34}}>
         ℓ = 1 · 1 bidang simpul melalui inti
       </Card>
     </AbsoluteFill>

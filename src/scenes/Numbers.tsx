@@ -1,7 +1,7 @@
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
 import {BACK, ramp, win} from '../anim';
-import {Card, Glow, Label, Stage, V} from '../components/primitives';
+import {Formula, Frac, Glow, Label, Part, Stage, Sub, V} from '../components/primitives';
 import {OrbitalCloud, type OrbitalId} from '../components/viz';
 import {useScene} from '../SceneContext';
 import {C, FONT} from '../theme';
@@ -139,17 +139,22 @@ export const Numbers: React.FC = () => {
           })}
         </g>
       </Stage>
-      <Card x={1580} y={760} opacity={B * spin * (1 - ex1)} accent={C.mint} style={{fontSize: 30}}>
-        spin <V>m</V>
-        <sub>s</sub> = ±½ → 2<V>n</V>² keadaan per kulit
-      </Card>
-      <Card x={1250} y={790} opacity={B * ex1} accent={C.mint} anchor="right" style={{fontSize: 30}}>
+      <Formula x={960} y={790} p={B * spin * (1 - ex1)} accent={C.mint} caption="dua arah spin per orbital">
+        <V>m</V>
+        <Sub>s</Sub>&nbsp;=&nbsp;±<Frac n="1" d="2" />
+        &nbsp;→&nbsp;2<V>n</V>
+        <sup style={{fontSize: '0.62em'}}>2</sup>&nbsp;keadaan per kulit
+      </Formula>
+      <Formula x={960} y={790} p={B * ex1} accent={C.gold}>
         (<V>n</V>, <V>ℓ</V>, <V>m</V>
-        <sub>ℓ</sub>) = (3, 2, −2) <span style={{color: C.mint}}>✓ salah satu 3d</span>
-      </Card>
-      <Card x={1310} y={790} opacity={B * ex2} accent={C.red} anchor="left" style={{fontSize: 30}}>
-        (2, 2, 0) <span style={{color: C.red}}>✗ ℓ harus &lt; n</span>
-      </Card>
+        <Sub>ℓ</Sub>) = (3, 2, −2)&nbsp;<span style={{color: C.mint, fontFamily: 'Outfit, sans-serif'}}>✓ 3d</span>
+        <Part p={ex2}>
+          <span style={{margin: '0 30px', color: C.faint}}>|</span>(2, 2, 0)&nbsp;
+          <span style={{color: C.red, fontFamily: 'Outfit, sans-serif'}}>
+            ✗ <V>ℓ</V> &lt; <V>n</V>
+          </span>
+        </Part>
+      </Formula>
     </AbsoluteFill>
   );
 };

@@ -1,10 +1,10 @@
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
 import {BACK, EASE_IN_OUT, mix, ramp, win} from '../anim';
-import {Card, Glow, Label, Stage, V} from '../components/primitives';
+import {Formula, Glow, Label, Part, Stage, Sub, V} from '../components/primitives';
 import {PhotonPacket} from '../components/viz';
 import {useScene} from '../SceneContext';
-import {C, FONT} from '../theme';
+import {C} from '../theme';
 
 // Diagram Grotrian: kolom s, p, d, f. Sumbu energi digambar tidak linear (∝ 1/n) agar terbaca.
 const COLX = [520, 860, 1200, 1540];
@@ -51,7 +51,7 @@ const TrArrow: React.FC<{tr: Tr; p: number; label?: string; dx?: number; at?: nu
 export const Selection: React.FC = () => {
   const {t, cue, wordOf} = useScene();
   const A = win(t, cue(0) - 0.4, cue(4) - 0.4, 0.8, 0.7);
-  const photon = ramp(t, cue(1), cue(1) + 0.8);
+  const photon = ramp(t, 0.2, 1.2);
   const rule1 = ramp(t, cue(2), cue(2) + 0.8, BACK);
   const rule2 = ramp(t, cue(3), cue(3) + 0.8, BACK);
   const B = ramp(t, cue(4) - 0.4, cue(4) + 0.8);
@@ -125,19 +125,20 @@ export const Selection: React.FC = () => {
           </g>
         </g>
       </Stage>
-      <Card x={960} y={680} opacity={A * rule1} scale={0.85 + 0.15 * rule1} accent={C.mint}>
-        <div style={{fontSize: 50}}>
-          Δ<V>ℓ</V> = ±1
-          <span style={{opacity: rule2, marginLeft: 50}}>
-            Δ<V>m</V>
-            <sub style={{fontSize: 26}}>ℓ</sub> = 0, ±1
-          </span>
-        </div>
-        <div style={{fontSize: 24, color: C.muted, textAlign: 'center', fontFamily: FONT.sans}}>aturan seleksi dipol listrik (satu foton)</div>
-      </Card>
-      <Card x={1700} y={220} opacity={B * ramp(t, cue(4) + 0.6, cue(4) + 1.4, BACK)} accent={C.mint} anchor="right" style={{fontSize: 28}}>
-        Δ<V>ℓ</V> = ±1<span style={{color: C.gold, opacity: nfree}}> · Δ<V>n</V> bebas</span>
-      </Card>
+      <Formula x={960} y={700} p={A * rule1} accent={C.mint} caption="aturan seleksi dipol listrik (satu foton)">
+        Δ<V>ℓ</V>&nbsp;=&nbsp;±1
+        <Part p={rule2}>
+          <span style={{margin: '0 40px', color: C.faint}}>·</span>Δ<V>m</V>
+          <Sub>ℓ</Sub>&nbsp;=&nbsp;0, ±1
+        </Part>
+      </Formula>
+      <Formula x={1860} y={215} anchor="right" size={50} p={B * ramp(t, cue(4) + 0.6, cue(4) + 1.4)} accent={C.mint}>
+        Δ<V>ℓ</V>&nbsp;=&nbsp;±1
+        <Part p={nfree} color={C.gold}>
+          <span style={{margin: '0 20px', color: C.faint}}>·</span>Δ<V>n</V>&nbsp;
+          <span style={{fontFamily: 'Outfit, sans-serif', fontSize: '0.8em'}}>bebas</span>
+        </Part>
+      </Formula>
     </AbsoluteFill>
   );
 };

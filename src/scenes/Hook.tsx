@@ -1,6 +1,6 @@
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
-import {BACK, EASE_IN_OUT, mix, rand, ramp, win} from '../anim';
+import {BACK, EASE_IN, EASE_IN_OUT, mix, rand, ramp, win} from '../anim';
 import {Glow, Label, Stage} from '../components/primitives';
 import {BALMER, Electron, Nucleus, OrbitalCloud, wlColor} from '../components/viz';
 import {useScene} from '../SceneContext';
@@ -12,10 +12,28 @@ const PRISM = {x: 1010, y: 470};
 const SCREEN = {x: 1560, y0: 260, y1: 700};
 // panjang gelombang → posisi vertikal pada layar (merah di atas, ungu di bawah)
 const wlY = (nm: number) => mix(SCREEN.y0 + 30, SCREEN.y1 - 30, (700 - nm) / (700 - 390));
+const FOCUS = {x: (TUBE.x0 + TUBE.x1) / 2, y: TUBE.y};
+const ATOM_C = {x: 960, y: 470};
+// partikel gas di dalam plasma: molekul H₂ (pasangan) dan atom H (tunggal)
+const GAS = Array.from({length: 70}, (_, i) => ({
+  x: rand(i * 4.7) * 1920,
+  y: 120 + rand(i * 9.1 + 2) * 840,
+  a: rand(i * 3.3) * Math.PI,
+  mol: rand(i * 5.9) > 0.35,
+  v: 0.3 + rand(i * 1.7),
+})).filter((g) => Math.hypot(g.x - ATOM_C.x, g.y - ATOM_C.y) > 140);
 
 export const Hook: React.FC = () => {
   const {t, cue, wordOf} = useScene();
-  const stage1 = 1 - ramp(t, cue(6) - 0.4, cue(6) + 0.8, EASE_IN_OUT);
+  // zoom-through: lab (tabung) → plasma → satu atom
+  const z1 = ramp(t, cue(6) - 0.5, cue(6) + 1.1, EASE_IN);
+  const z2 = ramp(t, cue(6) + 0.7, cue(6) + 2.6, EASE_IN_OUT);
+  const s1 = Math.exp(z1 * Math.log(30));
+  const stage1 = 1 - ramp(z1, 0.55, 1);
+  const gas = ramp(z1, 0.45, 0.9) * (1 - ramp(z2, 0.75, 1));
+  const s2 = Math.exp(z2 * Math.log(14));
+  const hud = win(t, cue(6) - 0.4, cue(7) + 0.4, 0.4, 0.8);
+  const expo = Math.round(mix(-1, -10, Math.min(1, 0.45 * z1 + 0.55 * z2)));
   const tube = ramp(t, 0.2, 1.4);
   const on = ramp(t, wordOf(0, 'listrik'), wordOf(0, 'listrik') + 0.5);
   const glow = on * (0.85 + 0.15 * Math.sin(t * 23) * Math.sin(t * 7.3)) * (0.6 + 0.4 * ramp(t, cue(1), cue(1) + 0.8));
@@ -23,14 +41,14 @@ export const Hook: React.FC = () => {
   const rainbow = win(t, cue(3) - 0.2, cue(4) - 0.2, 0.6, 0.8);
   const lines = BALMER.map((b, i) => ramp(t, cue(4) + 0.6 + i * 0.35, cue(4) + 1.1 + i * 0.35));
   const q = ramp(t, cue(5), cue(5) + 0.6, BACK) * (1 - ramp(t, cue(6) - 0.4, cue(6) + 0.3));
-  const atom = ramp(t, cue(6), cue(6) + 1.4, EASE_IN_OUT);
+  const atom = ramp(z2, 0.7, 1);
   const tags = ramp(t, cue(7), cue(7) + 0.6, BACK);
   const pink = '#ff6fb5';
 
   return (
     <AbsoluteFill>
       <Stage>
-        <g opacity={stage1}>
+        <g opacity={stage1} transform={`translate(${FOCUS.x} ${FOCUS.y}) scale(${s1}) translate(${-FOCUS.x} ${-FOCUS.y})`}>
           {/* tabung gas */}
           <g opacity={tube}>
             <Glow x={(TUBE.x0 + TUBE.x1) / 2} y={TUBE.y} r={420} color="red" opacity={0.35 * glow} />
@@ -81,6 +99,41 @@ export const Hook: React.FC = () => {
           })}
           <text x={1760} y={500} textAnchor="middle" dominantBaseline="central" fontFamily={FONT.sans} fontWeight={800} fontSize={190} fill={C.gold} opacity={q} style={{scale: String(0.7 + 0.3 * q)}}>
             ?
+          </text>
+        </g>
+        {/* plasma: molekul H₂ dan atom H */}
+        <g opacity={gas} transform={`translate(${ATOM_C.x} ${ATOM_C.y}) scale(${s2}) translate(${-ATOM_C.x} ${-ATOM_C.y})`}>
+          <circle cx={ATOM_C.x} cy={ATOM_C.y} r={900} fill="url(#soft-red)" opacity={0.18} />
+          {GAS.map((g, i) => {
+            const x = g.x + Math.sin(t * g.v + i) * 20;
+            const y = g.y + Math.cos(t * g.v * 0.8 + i) * 16;
+            const a = g.a + t * g.v;
+            return g.mol ? (
+              <g key={i}>
+                <circle cx={x - 7 * Math.cos(a)} cy={y - 7 * Math.sin(a)} r={6} fill="#f2f5ff" opacity={0.8} />
+                <circle cx={x + 7 * Math.cos(a)} cy={y + 7 * Math.sin(a)} r={6} fill="#f2f5ff" opacity={0.8} />
+              </g>
+            ) : (
+              <circle key={i} cx={x} cy={y} r={6} fill="#ffd2ec" opacity={0.9} filter="url(#glow)" />
+            );
+          })}
+          <circle cx={ATOM_C.x} cy={ATOM_C.y} r={7} fill="#ffd2ec" filter="url(#glow)" />
+          <circle cx={ATOM_C.x} cy={ATOM_C.y} r={20} fill="url(#soft-cyan)" opacity={0.6} />
+        </g>
+        {/* HUD skala ala SCIENTIAN */}
+        <g opacity={hud}>
+          <line x1={110} y1={860} x2={330} y2={860} stroke={C.gold} strokeWidth={3} />
+          <line x1={110} y1={850} x2={110} y2={870} stroke={C.gold} strokeWidth={3} />
+          <line x1={330} y1={850} x2={330} y2={870} stroke={C.gold} strokeWidth={3} />
+          <text x={110} y={830} fontFamily={FONT.mono} fontSize={30} fill={C.gold}>
+            ≈ 10
+            <tspan dy={-14} fontSize={20}>
+              {expo}
+            </tspan>
+            <tspan dy={14}> m</tspan>
+          </text>
+          <text x={110} y={790} fontFamily={FONT.mono} fontSize={18} letterSpacing={3} fill={C.muted}>
+            {expo > -3 ? 'TABUNG LUCUTAN' : expo > -9 ? 'GAS H₂ DAN ATOM H' : 'SATU ATOM H'}
           </text>
         </g>
         {/* atom paling sederhana */}
